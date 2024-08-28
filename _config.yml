@@ -101,6 +101,13 @@ theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  repo: https://github.com/nice2006/nice2006.github.io.git
+  branch: main # 注意此处分支设定,需在仓库中选择默认的分支
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
 deploy: 
   type: git
   repo: git@supertag.top:/www/repo/hexo.git
