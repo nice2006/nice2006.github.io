@@ -5,7 +5,7 @@ git bash 的操作
 运行博客：hexo s
 
 git bash 与 github之间的操作
-添加文件：git add
+添加文件：git add .
 提交本地仓库：git commit -m "commit-messages"
 提交远程仓库：git push origin main/master
 拉取远程文件：git pull
