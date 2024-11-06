@@ -102,5 +102,5 @@ remote_theme: next-theme/hexo-theme-next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/nice2006/nice2006.github.io.git
+  repo: git@github.com:nice2006/nice2006.github.io.git
   branch: master
