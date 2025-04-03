@@ -19,27 +19,36 @@
   <meta name="author" content="SuperTag">
   <meta name="keywords" content="">
   
-    <meta name="description" content="赞不绝口的朋友：“哎呀，你这孩子太漂亮了！”妈妈：“噢，这不算什么——你该看看他的照片！” 从前，读到无聊报纸时，读者会说“今天的世界也太无趣！”今天，他便要抱怨：“这报纸也太无趣！” 使世界变得有趣已不再是神的责任，而是新闻编辑的责任了。 我们索要的超过现实世界所能提供的限度，便要求有人编造出什么来补足世界的缺憾。这不过是我们追求幻象的一个例子罢了。 生动鲜明的图像让苍白的现实失色。 读者与观众">
+    <meta name="description" content="APK 文件结构APK 是 Android Package 的缩写，是 Android 平台上的应用程序包文件格式。APK 文件是一个 ZIP 压缩格式的文件，其中包含了应用程序的代码、资源文件和 META-INF 目录等文件。    文件 注释    assets 目录 存放 APK 的静态资源文件，比如视频、音频、图片等   lib 目录 armeabi-v7a 基本通用所有的 Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="幻象——有趣的句子">
-<meta property="og:url" content="https://nice2006.github.io/2025/03/24/%E5%B9%BB%E8%B1%A1%E2%80%94%E2%80%94%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8F%A5%E5%AD%90/index.html">
+<meta property="og:title" content="安卓逆向——APK文件结构">
+<meta property="og:url" content="https://nice2006.github.io/2025/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E2%80%94%E2%80%94APK%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="SuperTag 的 blog">
-<meta property="og:description" content="赞不绝口的朋友：“哎呀，你这孩子太漂亮了！”妈妈：“噢，这不算什么——你该看看他的照片！” 从前，读到无聊报纸时，读者会说“今天的世界也太无趣！”今天，他便要抱怨：“这报纸也太无趣！” 使世界变得有趣已不再是神的责任，而是新闻编辑的责任了。 我们索要的超过现实世界所能提供的限度，便要求有人编造出什么来补足世界的缺憾。这不过是我们追求幻象的一个例子罢了。 生动鲜明的图像让苍白的现实失色。 读者与观众">
+<meta property="og:description" content="APK 文件结构APK 是 Android Package 的缩写，是 Android 平台上的应用程序包文件格式。APK 文件是一个 ZIP 压缩格式的文件，其中包含了应用程序的代码、资源文件和 META-INF 目录等文件。    文件 注释    assets 目录 存放 APK 的静态资源文件，比如视频、音频、图片等   lib 目录 armeabi-v7a 基本通用所有的 Android">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-24T10:52:04.000Z">
-<meta property="article:modified_time" content="2025-03-24T10:53:07.271Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011639290.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011645852.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011646395.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011647789.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011648187.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011649188.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011650123.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031019224.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031020589.png">
+<meta property="article:published_time" content="2025-04-01T01:46:27.000Z">
+<meta property="article:modified_time" content="2025-04-03T02:25:39.111Z">
 <meta property="article:author" content="SuperTag">
-<meta property="article:tag" content="社科">
-<meta property="article:tag" content="真相">
-<meta property="article:tag" content="传播学">
-<meta property="article:tag" content="《幻象》">
+<meta property="article:tag" content="计算机">
+<meta property="article:tag" content="逆向">
+<meta property="article:tag" content="安卓逆向">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011639290.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>幻象——有趣的句子 - SuperTag 的 blog</title>
+  <title>安卓逆向——APK文件结构 - SuperTag 的 blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="幻象——有趣的句子"></span>
+            <span id="subtitle" data-typed-text="安卓逆向——APK文件结构"></span>
           
         </div>
 
@@ -221,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-24 18:52" pubdate>
-          2025年3月24日 晚上
+        <time datetime="2025-04-01 09:46" pubdate>
+          2025年4月1日 上午
         </time>
       </span>
     
@@ -233,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          302 字
+          1.2k 字
         
       </span>
     
@@ -244,7 +253,7 @@
         
         
         
-          3 分钟
+          10 分钟
         
       </span>
     
@@ -290,12 +299,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">幻象——有趣的句子</h1>
+            <h1 id="seo-header">安卓逆向——APK文件结构</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-03-24T18:53:07+08:00
+                    本文最后更新于 2025-04-03T10:25:39+08:00
                   
                   
 
@@ -305,13 +314,116 @@
             
               <div class="markdown-body">
                 
-                <p>赞不绝口的朋友：“哎呀，你这孩子太漂亮了！”<br>妈妈：“噢，这不算什么——你该看看他的照片！”</p>
-<p>从前，读到无聊报纸时，读者会说“今天的世界也太无趣！”<br>今天，他便要抱怨：“这报纸也太无趣！”</p>
-<p>使世界变得有趣已不再是神的责任，而是新闻编辑的责任了。</p>
-<p>我们索要的超过现实世界所能提供的限度，便要求有人编造出什么来补足世界的缺憾。这不过是我们追求幻象的一个例子罢了。</p>
-<p>生动鲜明的图像让苍白的现实失色。</p>
-<p>读者与观众很快就被报道的生动与照片的“真实”所折服，而不再关心被记录的事件是否自然发生。</p>
-<p>但麦考利肯定想象不到记者在 20 世纪美国的崇高地位。他们早早把自己变成了人民的保护者。据说他们拥有超然的态度，没有党派的偏见，紧贴信息的源头，据有缜密清晰的表达能力，又时时刻刻直接接触全体人民，这使他们也成了人民的顾问。</p>
+                <h2 id="APK-文件结构"><a href="#APK-文件结构" class="headerlink" title="APK 文件结构"></a>APK 文件结构</h2><p>APK 是 Android Package 的缩写，是 Android 平台上的应用程序包文件格式。APK 文件是一个 ZIP 压缩格式的文件，其中包含了应用程序的代码、资源文件和 META-INF 目录等文件。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assets 目录</td>
+<td>存放 APK 的静态资源文件，比如视频、音频、图片等</td>
+</tr>
+<tr>
+<td>lib 目录</td>
+<td>armeabi-v7a 基本通用所有的 Android 设备，arm64-v8a 只适用于 64 位的 Android 设备，x86 常见于 Android 模拟器，其目录下的 .so 文件是 C 或 C++ 编译的动态链接库文件</td>
+</tr>
+<tr>
+<td>META-INF 目录</td>
+<td>保存应用的签名信息，签名信息可以验证 APK 文件的完整性</td>
+</tr>
+<tr>
+<td>res 目录</td>
+<td>res 目录存放资源文件，包括图片、字符串等等</td>
+</tr>
+<tr>
+<td>AndroidManifest.xml 文件</td>
+<td>APK 的应用清单信息，它描述了应用的名字、版本、权限、引用的库文件等等信息</td>
+</tr>
+<tr>
+<td>classes.dex 文件</td>
+<td>classes.dex 是 java 源码编译后生成的 Java 字节码文件，APK 运行的主要逻辑</td>
+</tr>
+<tr>
+<td>resources.arsc 文件</td>
+<td>resources.arsc 是编译后的二进制资源文件，它是一个映射表，映射着资源和 ID，通过 R 文件中的 ID 就可以找到对应的资源</td>
+</tr>
+</tbody></table>
+<h2 id="初识-AndroidManifest-xml"><a href="#初识-AndroidManifest-xml" class="headerlink" title="初识 AndroidManifest.xml"></a>初识 AndroidManifest.xml</h2><p>AndroidManifest.xml 文件是整个应用程序的信息描述文件，定义了应用程序中包含的 Activity，Service，Content provider 和 BroadcastReceiver 组件信息。每个应用程序在根目录下必须包含一个 AndroidManifest.xml 文件，且文件名不能修改。它描述了 package 中 暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
+<p>AndroidManifest.xml文件是一个 XML 格式的文件，它的根元素是 manifest 元素，manifest 元素的几个常见属性如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">versionCode</td>
+<td align="left">版本号，主要用来更新，例如:12</td>
+</tr>
+<tr>
+<td align="left">versionName</td>
+<td align="left">版本名，给用户看的，例如:1.2</td>
+</tr>
+<tr>
+<td align="left">package</td>
+<td align="left">包名，每个应用程序都有一个唯一的包名</td>
+</tr>
+<tr>
+<td align="left">uses-permission android:name&#x3D;””</td>
+<td align="left">应用权限，例如：android.permission.INTERNET 代表网络权限</td>
+</tr>
+<tr>
+<td align="left">android:label&#x3D;”@string&#x2F;app_name”</td>
+<td align="left">应用名称</td>
+</tr>
+<tr>
+<td align="left">android:icon&#x3D;”@mipmap&#x2F;ic_launcher”</td>
+<td align="left">应用图标路径</td>
+</tr>
+<tr>
+<td align="left">android:debuggable&#x3D;”true”</td>
+<td align="left">应用是否开启 debug 权限</td>
+</tr>
+<tr>
+<td align="left">application</td>
+<td align="left">应用程序的信息，包括应用程序的名称、图标、主题、启动 Activity 等信息</td>
+</tr>
+<tr>
+<td align="left">activity</td>
+<td align="left">应用程序的 Activity 组件，每个 Activity 都需要在 AndroidManifest.xml 文件中进行声明</td>
+</tr>
+<tr>
+<td align="left">intent-filter</td>
+<td align="left">Activity 的过滤器，用于指定 Activity 的启动方式。</td>
+</tr>
+</tbody></table>
+<p>每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了<br>package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011639290.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="简单-Android-逆向举例——多开"><a href="#简单-Android-逆向举例——多开" class="headerlink" title="简单 Android 逆向举例——多开"></a>简单 Android 逆向举例——多开</h2><p>双开软件是一种可以在同一台手机上安装多个同一应用的软件，比如可以在同一台手机上安装两个微信，两个QQ等。双开有多种实现方式：</p>
+<ul>
+<li>多开分身：通过修改应用程序的包名和签名，实现多个应用程序的安装。</li>
+<li>修改Framework：对于有系统修改权限的厂商，可以修改 Framework 来实现双开的目的。</li>
+<li>Xposed框架：通过 Xposed 框架实现双开，通过 Hook 应用程序的启动逻辑，实现多个应用程序的安装。</li>
+<li>虚拟化技术：通过虚拟化技术实现双开，虚拟 Framework 层、虚拟文件系统、模拟 Android 对组件的管理、虚拟应用进程管理等一整套虚拟技术，将 APK 复制一份到虚拟空间中运行。</li>
+<li>以插件机制运行：利用反射替换，动态代（过）（滤）理，hook了系统的大部分与system—server进程通讯的函数，以此作为“欺上瞒下”的目的，欺骗系统“以为”只有一个apk在运行，瞒过插件让其“认为”自己已经安装。例如：VirtualApp</li>
+</ul>
+<p>由于其他几种方式比较复杂，涉及到系统层面的修改，这里主要介绍第一种方式：多开分身。多开分身的原理是通过修改应用程序的包名和签名，实现多个应用程序的安装。这里用 NP管理器简单示，具体步骤如下：先在菜单栏选择安装包提取，然后选择要提取的应用：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011645852.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011646395.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011647789.png" srcset="/img/loading.gif" lazyload></p>
+<p>提取完成后点击定位，即可定位到目的地址：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011648187.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后选择目标文件，选择功能：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011649188.png" srcset="/img/loading.gif" lazyload></p>
+<p>选择 APK 共存，此时会在当前目录下生成一个新的 APK 文件，这个 APK 文件就是多开分身的 APK 文件：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504011650123.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031019224.png" srcset="/img/loading.gif" lazyload></p>
+<p>点击生成的安装包，可以看到生成的 APK 文件的包名和签名状态已经修改了，这样就实现了多开分身。这时候就可以点击安装了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031020589.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -330,7 +442,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">读书笔记</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
   
   
 
@@ -345,13 +457,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%A4%BE%E7%A7%91/" class="print-no-link">#社科</a>
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="print-no-link">#计算机</a>
       
-        <a href="/tags/%E7%9C%9F%E7%9B%B8/" class="print-no-link">#真相</a>
+        <a href="/tags/%E9%80%86%E5%90%91/" class="print-no-link">#逆向</a>
       
-        <a href="/tags/%E4%BC%A0%E6%92%AD%E5%AD%A6/" class="print-no-link">#传播学</a>
-      
-        <a href="/tags/%E3%80%8A%E5%B9%BB%E8%B1%A1%E3%80%8B/" class="print-no-link">#《幻象》</a>
+        <a href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="print-no-link">#安卓逆向</a>
       
     </div>
   
@@ -365,9 +475,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91/" title="树和二叉树">
+                      <a href="/2025/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E2%80%94%E2%80%94smali%E8%AF%AD%E8%A8%80/" title="安卓逆向——smali语言">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">树和二叉树</span>
+                        <span class="hidden-mobile">安卓逆向——smali语言</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -375,8 +485,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/24/%E5%90%8E%E7%9C%9F%E7%9B%B8%E6%97%B6%E4%BB%A3/" title="后真相时代">
-                        <span class="hidden-mobile">后真相时代</span>
+                      <a href="/2025/03/30/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/z3/" title="z3">
+                        <span class="hidden-mobile">z3</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

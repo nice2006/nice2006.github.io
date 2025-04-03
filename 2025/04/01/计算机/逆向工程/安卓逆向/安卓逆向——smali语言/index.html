@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/img-1-1.jpg">
+  <link rel="icon" href="/img/img-1-1.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SuperTag">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JVM、Dalvik、ART JVM：Java 虚拟机，运行 Java 字节码程序。 Dalvik：Google 专门为 Android 设计的一个虚拟机，Dalvik 有专属的文件执行格式 dex（Dalvik executable）。 Art：Dalvik 的升级版，本质上与 Dalvik 没有区别。  Dalvik 虚拟机Dalvik 虚拟机是 Android 平台上的虚拟机，它是专门为 A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安卓逆向——smali语言">
+<meta property="og:url" content="https://nice2006.github.io/2025/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E2%80%94%E2%80%94smali%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="SuperTag 的 blog">
+<meta property="og:description" content="JVM、Dalvik、ART JVM：Java 虚拟机，运行 Java 字节码程序。 Dalvik：Google 专门为 Android 设计的一个虚拟机，Dalvik 有专属的文件执行格式 dex（Dalvik executable）。 Art：Dalvik 的升级版，本质上与 Dalvik 没有区别。  Dalvik 虚拟机Dalvik 虚拟机是 Android 平台上的虚拟机，它是专门为 A">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031030257.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031032554.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031036865.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031037792.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031046223.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031047230.png">
+<meta property="og:image" content="c:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20250403104755721.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031537870.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031539669.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031541365.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031543056.png">
+<meta property="article:published_time" content="2025-04-01T06:56:08.000Z">
+<meta property="article:modified_time" content="2025-04-03T07:43:57.340Z">
+<meta property="article:author" content="SuperTag">
+<meta property="article:tag" content="计算机">
+<meta property="article:tag" content="逆向">
+<meta property="article:tag" content="安卓逆向">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031030257.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>安卓逆向——smali语言 - SuperTag 的 blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"nice2006.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SuperTag</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-about-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/img-0-1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="安卓逆向——smali语言"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        SuperTag
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-01 14:56" pubdate>
+          2025年4月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">安卓逆向——smali语言</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-04-03T15:43:57+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="JVM、Dalvik、ART"><a href="#JVM、Dalvik、ART" class="headerlink" title="JVM、Dalvik、ART"></a>JVM、Dalvik、ART</h2><ul>
+<li>JVM：Java 虚拟机，运行 Java 字节码程序。</li>
+<li>Dalvik：Google 专门为 Android 设计的一个虚拟机，Dalvik 有专属的文件执行格式 dex（Dalvik executable）。</li>
+<li>Art：Dalvik 的升级版，本质上与 Dalvik 没有区别。</li>
+</ul>
+<h2 id="Dalvik-虚拟机"><a href="#Dalvik-虚拟机" class="headerlink" title="Dalvik 虚拟机"></a>Dalvik 虚拟机</h2><p>Dalvik 虚拟机是 Android 平台上的虚拟机，它是专门为 Android 平台设计的虚拟机，用于执行 Android 应用程序的字节码。它有专属的字节码格式 dex，Dalvik 虚拟机的字节码文件是以 .dex 为后缀的文件。Dalvik 虚拟机的字节码文件是通过将 Java 字节码文件转换为 Dalvik 字节码文件生成的，这个过程叫做 dex 编译。</p>
+<h2 id="smali-及其语法"><a href="#smali-及其语法" class="headerlink" title="smali 及其语法"></a>smali 及其语法</h2><p>smali 是 Dalvik 的寄存器语言，是 Dalvik 字节码的文本表示形式，smali 代码是 dex 反编译而来的。</p>
+<p>smali 语言的指令是 Dalvik 字节码的指令，它是一种基于寄存器的指令集，每个指令都是一个操作码和操作数的组合。smali 语言的指令和 Java 语言的指令是一一对应的，通过 smali 语言可以很方便地查看和修改 Dalvik 字节码。我们在反编译 Android 应用程序时，无法直接修改 Java 源码，但可以通过修改 smali 代码来修改 Dalvik 字节码，从而实现对应用程序的修改。</p>
+<p>反编译的时候无法直接修改 Java 代码，而是修改 smali 代码，因此学习 smali 是静态修改的一个前提条件。</p>
+<p><strong>关键字</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">.class</td>
+<td align="left">类名</td>
+</tr>
+<tr>
+<td align="left">.super</td>
+<td align="left">父类名，继承的上级类名名称</td>
+</tr>
+<tr>
+<td align="left">.source</td>
+<td align="left">源名</td>
+</tr>
+<tr>
+<td align="left">.field</td>
+<td align="left">变量</td>
+</tr>
+<tr>
+<td align="left">.method</td>
+<td align="left">方法名</td>
+</tr>
+<tr>
+<td align="left">.register</td>
+<td align="left">寄存器</td>
+</tr>
+<tr>
+<td align="left">.end method</td>
+<td align="left">方法名的结束</td>
+</tr>
+<tr>
+<td align="left">public</td>
+<td align="left">公有</td>
+</tr>
+<tr>
+<td align="left">protected</td>
+<td align="left">半公开，只有同一家人才能用</td>
+</tr>
+<tr>
+<td align="left">private</td>
+<td align="left">私有，只能自己使用</td>
+</tr>
+<tr>
+<td align="left">.parameter</td>
+<td align="left">方法参数</td>
+</tr>
+<tr>
+<td align="left">.prologue</td>
+<td align="left">方法开始</td>
+</tr>
+<tr>
+<td align="left">.line xxx</td>
+<td align="left">位于第xxx行</td>
+</tr>
+</tbody></table>
+<p><strong>数据类型对应</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">smali类型</th>
+<th align="left">java类型</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">V</td>
+<td align="left">void</td>
+<td align="left">无返回值</td>
+</tr>
+<tr>
+<td align="left">Z</td>
+<td align="left">boolean</td>
+<td align="left">布尔值类型，返回0或1</td>
+</tr>
+<tr>
+<td align="left">B</td>
+<td align="left">byte</td>
+<td align="left">字节类型，返回字节</td>
+</tr>
+<tr>
+<td align="left">S</td>
+<td align="left">short</td>
+<td align="left">短整数类型，返回数字</td>
+</tr>
+<tr>
+<td align="left">C</td>
+<td align="left">char</td>
+<td align="left">字符类型，返回字符</td>
+</tr>
+<tr>
+<td align="left">I</td>
+<td align="left">int</td>
+<td align="left">整数类型，返回数字</td>
+</tr>
+<tr>
+<td align="left">J</td>
+<td align="left">long （64位 需要2个寄存器存储）</td>
+<td align="left">长整数类型，返回数字</td>
+</tr>
+<tr>
+<td align="left">F</td>
+<td align="left">float</td>
+<td align="left">单浮点类型，返回数字</td>
+</tr>
+<tr>
+<td align="left">D</td>
+<td align="left">double （64位 需要2个寄存器存储）</td>
+<td align="left">双浮点类型，返回数字</td>
+</tr>
+<tr>
+<td align="left">string</td>
+<td align="left">String</td>
+<td align="left">文本类型，返回字符串</td>
+</tr>
+<tr>
+<td align="left">Lxxx&#x2F;xxx&#x2F;xxx</td>
+<td align="left">object</td>
+<td align="left">对象类型，返回对象</td>
+</tr>
+</tbody></table>
+<p><strong>常用指令</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">const</td>
+<td align="left">重写整数属性，真假属性内容，只能是数字类型</td>
+</tr>
+<tr>
+<td align="left">const-string</td>
+<td align="left">重写字符串内容</td>
+</tr>
+<tr>
+<td align="left">const-wide</td>
+<td align="left">重写长整数类型，多用于修改到期时间。</td>
+</tr>
+<tr>
+<td align="left">return</td>
+<td align="left">返回指令</td>
+</tr>
+<tr>
+<td align="left">if-eq</td>
+<td align="left">全称equal(a&#x3D;b)，比较寄存器ab内容，相同则跳</td>
+</tr>
+<tr>
+<td align="left">if-ne</td>
+<td align="left">全称not equal(a!&#x3D;b)，ab内容不相同则跳</td>
+</tr>
+<tr>
+<td align="left">if-eqz</td>
+<td align="left">全称equal zero(a&#x3D;0)，z即是0的标记，a等于0则跳</td>
+</tr>
+<tr>
+<td align="left">if-nez</td>
+<td align="left">全称not equal zero(a!&#x3D;0)，a不等于0则跳</td>
+</tr>
+<tr>
+<td align="left">if-ge</td>
+<td align="left">全称greater equal(a&gt;&#x3D;b)，a大于或等于则跳</td>
+</tr>
+<tr>
+<td align="left">if-le</td>
+<td align="left">全称little equal(a&lt;&#x3D;b)，a小于或等于则跳</td>
+</tr>
+<tr>
+<td align="left">goto</td>
+<td align="left">强制跳到指定位置</td>
+</tr>
+<tr>
+<td align="left">switch</td>
+<td align="left">分支跳转，一般会有多个分支线，并根据指令跳转到适当位置</td>
+</tr>
+<tr>
+<td align="left">iget</td>
+<td align="left">获取寄存器数据</td>
+</tr>
+</tbody></table>
+<p>其余 smali 指令也可以使用 smali 语法工具查询。</p>
+<h2 id="smali-语法实例——VIP-会员绕过"><a href="#smali-语法实例——VIP-会员绕过" class="headerlink" title="smali 语法实例——VIP 会员绕过"></a>smali 语法实例——VIP 会员绕过</h2><p>教程 demo 提示充值大会员：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031030257.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 jadx 中打开程序，查找 “大会员” ，查询到以下结果（有时候搜不出来是因为 UTF-8 编码被转换从 Unicode 编码，要手动转换一下）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031032554.png" srcset="/img/loading.gif" lazyload></p>
+<p>定位到目的 Java 代码，可以看到 if() 判断条件内调用了 isvip() 方法，用来检测是否是大会员。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031036865.png" srcset="/img/loading.gif" lazyload></p>
+<p>跟进 isvip()，发现被设置成 false。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031037792.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是 jadx 是没法修改 Java 代码的，只能修改 smali 代码。</p>
+<p>我们依照文件名查找 smali 代码：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031046223.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031047230.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20250403104755721.png" srcset="/img/loading.gif" lazyload alt="image-20250403104755721"></p>
+<p>smali 代码如下：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><code class="hljs smali">//一个私有、静态、不可变的方法   方法名<br><span class="hljs-keyword">.method</span><span class="hljs-keyword"> private</span><span class="hljs-keyword"> static</span><span class="hljs-keyword"> final</span> onCreate$lambda-2(<span class="hljs-class">Lkotlin/jvm/internal/Ref$IntRef;</span><span class="hljs-class">Lcom/zj/wuaipojie/ui/ChallengeSecond;</span><span class="hljs-class">Landroid/widget/ImageView;</span><span class="hljs-class">Landroid/widget/ImageView;</span><span class="hljs-class">Landroid/widget/ImageView;</span><span class="hljs-class">Landroid/view/View;</span>)Z //(这里面是方法的参数)这里是方法返回值类型，表示布尔值类型，返回假或真<br><span class="hljs-keyword">    .registers</span> 7  //寄存器数量<br><br><span class="hljs-keyword">    .line</span> 33  //代码所在的行数<br>   <span class="hljs-built_in"> iget </span>p0, p0, <span class="hljs-class">Lkotlin/jvm/internal/Ref$IntRef;</span>-&gt;element:I  //读取p0(第一个参数，参考寄存器知识)中element的值赋值给p0<br><br>   <span class="hljs-built_in"> const/4 </span>p5, 0x1  //p5赋值1<br><br>   <span class="hljs-built_in"> const/16 </span>v0, 0xa //v0赋值10，在16进制里a表示10<br><br>   <span class="hljs-built_in"> if-ge </span>p0, v0,<span class="hljs-keyword"> :cond_15</span>  //判断p0的值是否大于或等于v0的值(即p0的值是否大于或等于10)，如果大于或等于则跳转到:cond_15<br><br><span class="hljs-keyword">    .line</span> 34  //以下是常见的Toast弹窗代码<br>   <span class="hljs-built_in"> check-cast </span>p1, <span class="hljs-class">Landroid/content/Context;</span> //检查Context对象引用<br><br>   <span class="hljs-built_in"> const-string </span>p0, <span class="hljs-string">&quot;请先获取10个硬币哦&quot;</span> //弹窗文本信息，把<span class="hljs-string">&quot;&quot;</span>里的字符串数据赋值给p0<br><br>   <span class="hljs-built_in"> check-cast </span>p0, <span class="hljs-class">Ljava/lang/CharSequence;</span> //检查CharSequence对象引用<br><br>   <span class="hljs-built_in"> invoke-static </span>&#123;p1, p0, p5&#125;, <span class="hljs-class">Landroid/widget/Toast;</span>-&gt;makeText(<span class="hljs-class">Landroid/content/Context;</span><span class="hljs-class">Ljava/lang/CharSequence;</span>I)<span class="hljs-class">Landroid/widget/Toast;</span> <br>    //将弹窗文本、显示时间等信息传给p1<br><br>   <span class="hljs-built_in"> move-result-object </span>p0  //结果传递给p0<br><br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p0&#125;, <span class="hljs-class">Landroid/widget/Toast;</span>-&gt;show()V  //当看到这个Toast;-&gt;show你就应该反应过来这里是弹窗代码<br><br>   <span class="hljs-built_in"> goto </span>:goto_31  //跳转到:goto_31<br><br>   <span class="hljs-keyword"> :cond_15</span> //跳转的一个地址<br><br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p1&#125;, <span class="hljs-class">Lcom/zj/wuaipojie/ui/ChallengeSecond;</span>-&gt;isvip()Z  //判断isvip方法的返回值是否为真(即结果是否为1)<br><br>   <span class="hljs-built_in"> move-result </span>p0  //结果赋值给p0<br><br>   <span class="hljs-built_in"> if-eqz </span>p0,<span class="hljs-keyword"> :cond_43</span> //如果结果为0则跳转cond_43地址<br><br>   <span class="hljs-built_in"> const </span>p0, 0x7f0d0018  //在arsc中的id索引，这个值可以进行查询<br><br><span class="hljs-keyword">    .line</span> 37<br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p2, p0&#125;, <span class="hljs-class">Landroid/widget/ImageView;</span>-&gt;setImageResource(I)V //设置图片资源<br><br>   <span class="hljs-built_in"> const </span>p0, 0x7f0d0008<br><br><span class="hljs-keyword">    .line</span> 38<br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p3, p0&#125;, <span class="hljs-class">Landroid/widget/ImageView;</span>-&gt;setImageResource(I)V<br><br>   <span class="hljs-built_in"> const </span>p0, 0x7f0d000a<br><br><span class="hljs-keyword">    .line</span> 39<br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p4, p0&#125;, <span class="hljs-class">Landroid/widget/ImageView;</span>-&gt;setImageResource(I)V<br><br><span class="hljs-keyword">    .line</span> 40<br>   <span class="hljs-built_in"> sget-object </span>p0, <span class="hljs-class">Lcom/zj/wuaipojie/util/SPUtils;</span>-&gt;INSTANCE:<span class="hljs-class">Lcom/zj/wuaipojie/util/SPUtils;</span> <br><br>   <span class="hljs-built_in"> check-cast </span>p1, <span class="hljs-class">Landroid/content/Context;</span><br><br>   <span class="hljs-built_in"> const/4 </span>p2, 0x2 //p2赋值2<br><br>   <span class="hljs-built_in"> const-string </span>p3, <span class="hljs-string">&quot;level&quot;</span> //sp的索引<br><br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p0, p1, p3, p2&#125;, <span class="hljs-class">Lcom/zj/wuaipojie/util/SPUtils;</span>-&gt;saveInt(<span class="hljs-class">Landroid/content/Context;</span><span class="hljs-class">Ljava/lang/String;</span>I)V //写入数据<br><br>   <span class="hljs-built_in"> goto </span>:goto_50 //跳转地址<br><br>   <span class="hljs-keyword"> :cond_43</span><br><br>   <span class="hljs-built_in"> check-cast </span>p1, <span class="hljs-class">Landroid/content/Context;</span><br><br>   <span class="hljs-built_in"> const-string </span>p0, <span class="hljs-string">&quot;\u8bf7\u5148\u5145\u503c\u5927\u4f1a\u5458\u54e6\uff01&quot;</span> //请先充值大会员哦！<br><br>   <span class="hljs-built_in"> check-cast </span>p0, <span class="hljs-class">Ljava/lang/CharSequence;</span><br><br>   <span class="hljs-built_in"> invoke-static </span>&#123;p1, p0, p5&#125;, <span class="hljs-class">Landroid/widget/Toast;</span>-&gt;makeText(<span class="hljs-class">Landroid/content/Context;</span><span class="hljs-class">Ljava/lang/CharSequence;</span>I)<span class="hljs-class">Landroid/widget/Toast;</span><br><br>   <span class="hljs-built_in"> move-result-object </span>p0<br><br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p0&#125;, <span class="hljs-class">Landroid/widget/Toast;</span>-&gt;show()V<br><br>   <span class="hljs-keyword"> :goto_50</span><br>   <span class="hljs-built_in"> return </span>p5  //返回p5的值<span class="hljs-keyword"></span><br><span class="hljs-keyword">.end method</span> //方法结束<br><br>//判断是否是大会员的方法<br><span class="hljs-keyword">.method</span><span class="hljs-keyword"> public</span><span class="hljs-keyword"> final</span> isvip()Z<br><span class="hljs-keyword">    .registers</span> 2<br><br>   <span class="hljs-built_in"> const/4 </span>v0, 0x0 //v0赋值0<br><br>   <span class="hljs-built_in"> return </span>v0 //返回v0的值<span class="hljs-keyword"></span><br><span class="hljs-keyword"></span><br><span class="hljs-keyword">.end method</span><br></code></pre></td></tr></table></figure>
+
+<p>也可以通过窗口 id 进行快速定位。</p>
+<p>打开开发者助手，然后进入程序，进入目标界面，选择 【界面资源分析】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031537870.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后点击目标按钮，获取按钮 ID：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031539669.png" srcset="/img/loading.gif" lazyload></p>
+<p>点击复制，然后进入 MT管理器，进入 class.dex，选择搜索，这里注意选择整数型，并勾选上【十六进制】。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031541365.png" srcset="/img/loading.gif" lazyload></p>
+<p>搜完有两个，两个都跟进去看看就知道差不多找到位置了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504031543056.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="修改寄存器的值"><a href="#修改寄存器的值" class="headerlink" title="修改寄存器的值"></a>修改寄存器的值</h3><p>可以看到，isvip 方法默认返回值为0，即不是大会员，我们可以通过修改这个方法的返回值来绕过大会员检测。我们可以将返回值改为1，即是大会员，这样就可以绕过大会员检测了。</p>
+<p>其次我们需要先获取10个硬币，才能点亮一键三连，我们可以通过修改 onCreate$lambda-2 方法中的 <code>if-ge p0, v0, :cond_15</code> 这一行代码，将 v0 的值改为 0，这样就可以绕过硬币检测了。</p>
+<p>接下来就是修改环节，用 MT管理器提取安装包后查看 classes.dex 文件。</p>
+<p>选择 DEX 编辑 PLUS，搜索 isvip，找到对应的方法，将返回值改为1。</p>
+<h3 id="修改判断法"><a href="#修改判断法" class="headerlink" title="修改判断法"></a>修改判断法</h3><p>也可以将 <code>if-ge p0, v0, :cond_15</code> 这一行代码的 <code>if-ge</code> 改成 <code>if-le</code>，然后将判断 isvip 的语句 if-eqz p0, :cond_43 加个 “#” 直接注释掉，这样也可以跳过 VIP 检测。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="print-no-link">#计算机</a>
+      
+        <a href="/tags/%E9%80%86%E5%90%91/" class="print-no-link">#逆向</a>
+      
+        <a href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="print-no-link">#安卓逆向</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E2%80%94%E2%80%94APK%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="安卓逆向——APK文件结构">
+                        <span class="hidden-mobile">安卓逆向——APK文件结构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
