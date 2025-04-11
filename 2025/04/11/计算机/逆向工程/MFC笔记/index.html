@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/img-1-1.jpg">
+  <link rel="icon" href="/img/img-1-1.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SuperTag">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MFC是一种面向对象，用于开发windows应用程序的框架，突出特点是封装了大部分windows API，便于开发人员使用。 MFC程序的运行过程分为以下四步：  利用全局应用程序对象 theApp 启动应用程序。  调用全局应用程序对象的构造函数，从而调用基类（CWinApp）的构造函数，完成应用程序的一些初始化工作，并将应用程序对象的指针保存起来。  进入WinMain函数。在 AfxWinM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MFC笔记">
+<meta property="og:url" content="https://nice2006.github.io/2025/04/11/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/MFC%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="SuperTag 的 blog">
+<meta property="og:description" content="MFC是一种面向对象，用于开发windows应用程序的框架，突出特点是封装了大部分windows API，便于开发人员使用。 MFC程序的运行过程分为以下四步：  利用全局应用程序对象 theApp 启动应用程序。  调用全局应用程序对象的构造函数，从而调用基类（CWinApp）的构造函数，完成应用程序的一些初始化工作，并将应用程序对象的指针保存起来。  进入WinMain函数。在 AfxWinM">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111729452.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111732994.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111733973.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111735789.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111738776.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111740510.png">
+<meta property="article:published_time" content="2025-04-11T08:25:02.000Z">
+<meta property="article:modified_time" content="2025-04-11T09:40:15.819Z">
+<meta property="article:author" content="SuperTag">
+<meta property="article:tag" content="计算机">
+<meta property="article:tag" content="逆向">
+<meta property="article:tag" content="MFC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111729452.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>MFC笔记 - SuperTag 的 blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"nice2006.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SuperTag</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-about-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/img-0-1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MFC笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        SuperTag
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-11 16:25" pubdate>
+          2025年4月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MFC笔记</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-04-11T17:40:15+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>MFC是一种面向对象，用于开发windows应用程序的框架，突出特点是封装了大部分windows API，便于开发人员使用。</p>
+<p>MFC程序的运行过程分为以下四步：</p>
+<ol>
+<li><p>利用全局应用程序对象 theApp 启动应用程序。</p>
+</li>
+<li><p>调用全局应用程序对象的构造函数，从而调用基类（CWinApp）的构造函数，完成应用程序的一些初始化工作，并将应用程序对象的指针保存起来。</p>
+</li>
+<li><p>进入WinMain函数。在 AfxWinMain 函数中获取子类的指针，利用指针实现上述的三个函数，从而完成窗口的创建注册等工作。</p>
+</li>
+<li><p>进入消息循环，一直到 WM_QUIT。</p>
+</li>
+</ol>
+<p>因为其封装了大部分windows API，逆向起来也复杂了不少。</p>
+<p>MFC 框架软件主要就是一堆 button，主要逆向也是 check button。</p>
+<p>对于 MFC 逆向，我们主要需要知道的是，当我们执行某个操作（点击某个按钮）的时候，程序会执行什么处理函数。在 MFC 中，程序是使用消息机制来实现操作响应的，这个是消息映射表的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">AFX_MSGMAP</span>&#123;<br>    AFX_MSGMAP * pBaseMessageMap;<br>    AFX_MSGMAP_ENTRY * lpEntries;<br>&#125;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">AFX_MSGMAP_ENTRY</span>&#123;<br>    UINT nMessage;    <span class="hljs-comment">//Windows Message</span><br>    UINT nCode        <span class="hljs-comment">//Control code or WM_NOTIFY code</span><br>    UINT nID;         <span class="hljs-comment">//control ID (or 0 for windows messages)</span><br>    UINT nLastID;     <span class="hljs-comment">//used for entries specifying a range of control id&#x27;s</span><br>    UINT nSig;        <span class="hljs-comment">//signature type(action) or pointer to message </span><br>    AFX_PMSG pfn;     <span class="hljs-comment">//routine to call (or specical value)</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>其中 <code>AFX_MSGMAP_ENTRY</code> 中的最后一个成员 <code>AFX_PMSG</code> 是一个函数指针，指向当前控件绑定的函数。</p>
+<p>同时 <code>nID</code> 成员描述的是当前控件的 ID，利用这个 ID 就可以确定我们寻找的控件。</p>
+<p><code>AFX_MSGMAP</code> 结构体会记录一个指向 <code>AFX_MSGMAP_ENTRY</code> 的指针 <code>lpEntries</code> 。</p>
+<p>由此，可以通过以下思路查找空间的注册函数：</p>
+<ol>
+<li>找到 <code>AFX_MSGMAP</code> 。</li>
+<li>找到控件 ID。</li>
+</ol>
+<p>最关键的就是查找控件 ID。</p>
+<p><code>AFX_MSGMAP</code> 存在于 .rdata 段，而 .rdata 段一般有 RTTI、虚函数表与 AFX_MSGMAP，所以 MSG_MAP 数据结构特征相对容易分辨，可以通过编写一个脚本找到。</p>
+<p>存在一个 <code>GetMessageMap</code> 函数，可以获得 <code>AFX_MSGMAP</code>。而一般 <code>GetMessageMap</code> 在编译器自动生成的代码中会被调用，所以我们可以通过查找 <code>GetMessageMap</code> 调用者来完成对 <code>GetMessageMap</code> 的定位。</p>
+<p>值得一提的是 <code>pBaseMessageMap</code> 指向的地址是 <code>GetMessageMap</code> 的地址。<code>GetMessageMap</code> 函数的作用是将 <code>AFX_MSGMAP</code> 的地址静态生成。</p>
+<ol>
+<li>搜索的起始地址从.rdata段的起始地址开始，以4为倍数增加。</li>
+<li>起始地址+4保存的DWORD（<code>AFX_MSGMAP-&gt;lpEntries</code>）等于起始地址+8（第一个<code>AFX_MSGMAP_ENTRY</code>）。</li>
+<li>根据定义，<code>AFX_MSGMAP_ENTYR</code> 以全 0 结束，可以作为判定结束条件。</li>
+</ol>
+<p>以下是别人写的 IDC 脚本查找可能满足条件的 <code>AFX_MSGMAP</code> ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;idc.idc&gt;</span></span><br><br><span class="hljs-type">static</span> <span class="hljs-title function_">NotEndAddr</span><span class="hljs-params">(pAddr)</span>&#123;<br> <span class="hljs-keyword">auto</span> i=<span class="hljs-number">0</span>;<br> <span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)&#123;<br>  <span class="hljs-keyword">if</span> (Dword(i*<span class="hljs-number">4</span>+pAddr)!=<span class="hljs-number">0</span>)<br>   <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;  <span class="hljs-comment">//not end</span><br> &#125;<br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;    <span class="hljs-comment">//reach the end</span><br>&#125;<br><span class="hljs-type">static</span> <span class="hljs-title function_">isMsgMap</span><span class="hljs-params">(checkAddr,startVa,endVa)</span>&#123;<br> <span class="hljs-keyword">auto</span> tmp1=Dword(checkAddr);<br> <span class="hljs-keyword">auto</span> tmp2=Dword(checkAddr+<span class="hljs-number">4</span>);<br><br> <span class="hljs-keyword">auto</span> pAddr=checkAddr+<span class="hljs-number">8</span>;<br> <span class="hljs-keyword">if</span> (tmp2==checkAddr+<span class="hljs-number">8</span>)&#123;<br><br>  <span class="hljs-keyword">while</span>(NotEndAddr(pAddr))&#123;<br>   <span class="hljs-keyword">if</span>(Dword(pAddr+<span class="hljs-number">20</span>)&lt;startVa||Dword(pAddr+<span class="hljs-number">20</span>)&gt;endVa)&#123;<br><span class="hljs-comment">//    Message(&quot;Invalid Addr at %0x.\n&quot;,pAddr);</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>   &#125;<br><br>   pAddr=pAddr+<span class="hljs-number">24</span>;  <br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br> &#125;<br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">static</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br> <span class="hljs-keyword">auto</span> startRdataVa=<span class="hljs-number">0x0044E880</span>;   <span class="hljs-comment">//the start addr of .rdata</span><br> <span class="hljs-keyword">auto</span> size=<span class="hljs-number">0x0000DAA8</span>;     <span class="hljs-comment">//the size of .rdata</span><br><br> <span class="hljs-keyword">auto</span> startValidVa=<span class="hljs-number">0x00400000</span>;   <span class="hljs-comment">//check the addr is valid or not</span><br> <span class="hljs-keyword">auto</span> endValidVa=<span class="hljs-number">0x0046A000</span>;<br><br> <span class="hljs-keyword">auto</span> i=<span class="hljs-number">0</span>;<br> <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;size;i=i+<span class="hljs-number">4</span>)&#123;<br>  <span class="hljs-keyword">if</span>(isMsgMap(i+startRdataVa,startValidVa,endValidVa))&#123;<br>   Message(<span class="hljs-string">&quot;Found Possible MessageMap at %0x.\n&quot;</span>,i+startRdataVa);<br>  &#125;<br> &#125;  <br> Message(<span class="hljs-string">&quot;Finish searching.\n&quot;</span>);<br><br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>（若将脚本用于不同程序，建议修改startRdataVa，size，startValidVa以及endValidVa四项参数）</p>
+<p>一般生成的可能地址非常少，可以通过以下三个依据手动过滤：</p>
+<ul>
+<li><code>AFX_MSGMAP–&gt;pBaseMessageMap</code> 是 <code>GetMessageMap</code>（封装函数，非常短，只返回 <code>AFX_MSGMAP</code> 地址）。</li>
+<li>其中一定有不为 0 的元素。</li>
+<li>其中一定存在你所查找的控件 ID（ <code>AFX_MSGMAP_ENTRY–&gt;nID</code> ），而且是全部 ID。</li>
+</ul>
+<p>还可以查询 <code>GetMessageMap</code> 的调用函数，然后逆向追溯 <code>AFX_MSGMAP</code>。</p>
+<p><code>OnWndMsg</code> 调用了 <code>GetMessageMap</code> ，<code>OnWndMsg</code> 大体逻辑如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">BOOL <span class="hljs-title">CWnd::OnWndMsg</span><span class="hljs-params">(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)</span></span><br><span class="hljs-function"></span>&#123;<br>    LRESULT lResult = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">const</span> AFX_MSGMAP* pMessageMap;<br><br>     <span class="hljs-comment">//取得消息映射结构，GetMessageMap为虚函数，所以实际取的是CmainFrame的消息映射</span><br>    pMessageMap = <span class="hljs-built_in">GetMessageMap</span>();<br><br>    <span class="hljs-comment">// 查找对应的消息处理函数</span><br>    <span class="hljs-keyword">for</span> (pMessageMap != <span class="hljs-literal">NULL</span>; pMessageMap = pMessageMap-&gt;pBaseMap)<br>        <span class="hljs-keyword">if</span> (message &lt; <span class="hljs-number">0xC000</span>)<br>            <span class="hljs-keyword">if</span> ((lpEntry = <span class="hljs-built_in">AfxFindMessageEntry</span>(pMessageMap-&gt;lpEntries, message, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)) != <span class="hljs-literal">NULL</span>)<br>                <span class="hljs-keyword">goto</span> LDispatch;<br>    ... ...<br>LDispatch:<br>    <span class="hljs-comment">//通过联合来匹配正确的函数指针类型</span><br>    <span class="hljs-keyword">union</span> <span class="hljs-title class_">MessageMapFunctions</span> mmf;<br>mmf.pfn = lpEntry-&gt;pfn;<br>……<br></code></pre></td></tr></table></figure>
+
+<p>因此为了获取 <code>GetMessageMap</code> ，需要先获取 <code>Cwnd::OnWndMsg</code> ，这个函数在 IDA 中同样不会被识别，所以需要找到它的调用函数。同样，有其类似实现 <code>CWnd::WindowProc</code> ：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">LRESULT <span class="hljs-title">CWnd::WindowProc</span><span class="hljs-params">(UINT message, WPARAM wParam, LPARAM lParam)</span></span><br><span class="hljs-function"></span>&#123;<br>    LRESULT lResult = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">OnWndMsg</span>(message, wParam, lParam, &amp;lResult))<br><br>        lResult = <span class="hljs-built_in">DefWindowProc</span>(message, wParam, lParam);<br><br>    <span class="hljs-keyword">return</span> lResult;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在 IDA 中表现大致如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __thiscall <span class="hljs-title function_">CWnd::WindowProc</span><span class="hljs-params">(CWnd *this, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a2, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a3, <span class="hljs-type">int</span> a4)</span><br>&#123;<br>  CWnd *v4; <span class="hljs-comment">// esi</span><br>  <span class="hljs-type">int</span> v6; <span class="hljs-comment">// [esp+4h] [ebp-4h]</span><br><br>  v6 = <span class="hljs-number">0</span>;<br>  v4 = this;<br>  <span class="hljs-keyword">if</span> ( !(*(<span class="hljs-type">int</span> (__thiscall **)(CWnd *, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>, <span class="hljs-type">int</span>, <span class="hljs-type">int</span> *))(*(_DWORD *)this + <span class="hljs-number">276</span>))(<br>          this,<br>          a2,<br>          a3,<br>          a4,<br>          &amp;v6) )<br>    v6 = (*(<span class="hljs-type">int</span> (__thiscall **)(CWnd *, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>, <span class="hljs-type">int</span>))(*(_DWORD *)v4 + <span class="hljs-number">280</span>))(v4, a2, a3, a4);<br>  <span class="hljs-keyword">return</span> v6;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>那么显然第一个 if 中嵌套的调用就是 <code>Cwnd::OnWndMsg</code>，由于没有识别出来，需要使用 OD 动态跟踪获取地址，然后在 IDA 中静态分析。</p>
+<p>然后进去之后慢慢分析就可以找到 <code>AFX_MSGMAP</code> 结构。</p>
+<p>对于在 IDA 中优化结构，使用的结构定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">AFX_MSGMAP_ENTRY</span></span><br><span class="hljs-class"></span><br><span class="hljs-class">  &#123;</span><br><br>   UINT nMessage;<br><br>   UINT nCode;<br><br>   UINT nID;<br><br>   UINT nLastID;<br><br>   UINT_PTR nSig;<br><br>   <span class="hljs-type">void</span> (*pfn)(<span class="hljs-type">void</span>);<br><br>  &#125;;<br><br>  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">AFX_MSGMAP</span></span><br><span class="hljs-class"></span><br><span class="hljs-class">  &#123;</span><br><br>    <span class="hljs-type">const</span> AFX_MSGMAP *(__stdcall *pfnGetBaseMap)();<br><br>    <span class="hljs-type">const</span> AFX_MSGMAP_ENTRY *lpEntries;<br><br>  &#125;;<br></code></pre></td></tr></table></figure>
+
+<p>首先IDA上方菜单–&gt;View–&gt;Open Subview–&gt;Local types，进入本地结构定义菜单。</p>
+<p>右键Insert，在弹出的结构窗口中输入上述结构。</p>
+<p>之后翻到最底部，找到上一步定义的两个结构体（一般就是最后两个），选择后右键Synchronize To idb。</p>
+<p>最后回到 IDA-ViewA 窗口，选中需要改变的结构体 Alt+Q 进行结构变换。</p>
+<p>查找控件 ID 的工具有以下几种：</p>
+<ul>
+<li>xspy</li>
+<li>ResourceHacker</li>
+<li>彗星小助手</li>
+</ul>
+<p>下面是一个简单的 MFC 题目：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111729452.png" srcset="/img/loading.gif" lazyload></p>
+<p>题目提示 flag 就在控件之间，那么我们要找标题对应的 flag 和 内容对应的 key。</p>
+<p>我们使用 xspy 工具对其进行分析：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111732994.png" srcset="/img/loading.gif" lazyload></p>
+<p>因为窗口句柄叫做 HWND，首先找到了 flag：000F0D38(944c8d100f82f0c18b682f63e4dbaa207a2f1e72581c2f1b)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111733973.png" srcset="/img/loading.gif" lazyload></p>
+<p>随后发现一个特殊的 OnMsg <code>OnMsg:0464,func= 0x00402170(MFC1.exe+ 0x002170 )</code> 。其特殊性在于仅仅只有它不是以宏的形式出现，是作者自定义消息，并没有 button 等组件，所以无论怎么点击都无法触发效果，并且传入一个特殊数字 0464来触发效果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111735789.png" srcset="/img/loading.gif" lazyload></p>
+<p>那么接下来就是给这个窗口发送一个消息触发 func 函数获取需要的 key：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;Windows.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    HWND h = FindWindowA(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Flag就在控件里&quot;</span>);<br>    <span class="hljs-keyword">if</span> (h)<br>    &#123;<br>        SendMessage(h, <span class="hljs-number">0x0464</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;success&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;failure&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 API FindWindow 获取窗口句柄，SendMessage 发送消息，得到了 key{I am a Des key}：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111738776.png" srcset="/img/loading.gif" lazyload></p>
+<p>最后放进 DES 解密即可：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504111740510.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="print-no-link">#计算机</a>
+      
+        <a href="/tags/%E9%80%86%E5%90%91/" class="print-no-link">#逆向</a>
+      
+        <a href="/tags/MFC/" class="print-no-link">#MFC</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E2%80%94%E2%80%94smali%E8%AF%AD%E8%A8%80/" title="安卓逆向——smali语言">
+                        <span class="hidden-mobile">安卓逆向——smali语言</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
