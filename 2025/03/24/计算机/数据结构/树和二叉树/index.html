@@ -22,14 +22,19 @@
     <meta name="description" content="树和二叉树树结构是一类非常重要的非线性数据结构，是以分支关系定义的层次结构，在各个领域都得到广泛的运用。 树和二叉树的定义树的定义树是 n 个结点的有限集。对于非空树，有以下特点：  有且只有一个称为根的结点。 除根结点以外的其余结点可分为 m 个互不相交的有限集 T1,T2…,Tn ，其中每一个集合本身又是一棵树，并且称为根的子树。（递归定义初见端倪）  树的结构定义是一个递归的定义，这道出了树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树和二叉树">
-<meta property="og:url" content="https://nice2006.github.io/2025/03/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:url" content="https://nice2006.github.io/2025/03/24/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
 <meta property="og:site_name" content="SuperTag 的 blog">
 <meta property="og:description" content="树和二叉树树结构是一类非常重要的非线性数据结构，是以分支关系定义的层次结构，在各个领域都得到广泛的运用。 树和二叉树的定义树的定义树是 n 个结点的有限集。对于非空树，有以下特点：  有且只有一个称为根的结点。 除根结点以外的其余结点可分为 m 个互不相交的有限集 T1,T2…,Tn ，其中每一个集合本身又是一棵树，并且称为根的子树。（递归定义初见端倪）  树的结构定义是一个递归的定义，这道出了树">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504101952092.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504102052545.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141448617.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141514598.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141533489.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141544873.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141736792.png">
 <meta property="article:published_time" content="2025-03-24T11:03:55.000Z">
-<meta property="article:modified_time" content="2025-04-11T01:22:56.963Z">
+<meta property="article:modified_time" content="2025-04-14T09:38:13.824Z">
 <meta property="article:author" content="SuperTag">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="数据结构">
@@ -234,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k 字
+          7.6k 字
         
       </span>
     
@@ -245,7 +250,7 @@
         
         
         
-          36 分钟
+          64 分钟
         
       </span>
     
@@ -296,7 +301,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-04-11T09:22:56+08:00
+                    本文最后更新于 2025-04-14T17:38:13+08:00
                   
                   
 
@@ -475,7 +480,133 @@
 <h5 id="带头节点的二叉树中序线索化"><a href="#带头节点的二叉树中序线索化" class="headerlink" title="带头节点的二叉树中序线索化"></a>带头节点的二叉树中序线索化</h5><p><strong>算法描述</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">InOrderThreading</span><span class="hljs-params">(BiThrTree &amp;Thrt, BiThrTree T)</span> </span>&#123;<span class="hljs-comment">// 中序遍历二叉树 T，并将其中序线索化，Thrt 指向头节点</span><br>	Thrt = <span class="hljs-keyword">new</span> BiThrNode;     <span class="hljs-comment">// 建头节点</span><br>	Thrt-&gt;LTag = <span class="hljs-number">0</span>;           <span class="hljs-comment">// 头节点有左孩子，若树非空，则其左孩子为树根</span><br>	Thrt-&gt;RTag = <span class="hljs-number">1</span>;           <span class="hljs-comment">// 头节点的右孩子为右线索</span><br>	Thrt-&gt;rchild = Thrt;      <span class="hljs-comment">// 初始化时右指针指向自己</span><br><br>	<span class="hljs-keyword">if</span>(!T)                    <span class="hljs-comment">// 若树为空，则左指针也指向自己</span><br>		Thrt-&gt;lchild = Thrt;<br>	<span class="hljs-keyword">else</span> &#123;<br>		Thrt-&gt;lchild = T;     <span class="hljs-comment">// 头节点的左孩子指向树根，pre 初值指向头节点</span><br>		pre = Thrt;<br>		<span class="hljs-built_in">InThreading</span>(T);       <span class="hljs-comment">// 调用算法 InThreading()，对以 T 为根的二叉树进行中序线索化</span><br>		pre-&gt;rchild = Thrt;   <span class="hljs-comment">// 算法 InThreading() 结束后，pre 为最右结点，pre 的右线索指向头节点</span><br>		pre-&gt;RTag = <span class="hljs-number">1</span>;<br>		Thrt-&gt;rchild = pre;   <span class="hljs-comment">// 头节点的右线索指向 pre</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="遍历线索二叉树"><a href="#遍历线索二叉树" class="headerlink" title="遍历线索二叉树"></a>遍历线索二叉树</h4>
+<h4 id="遍历线索二叉树"><a href="#遍历线索二叉树" class="headerlink" title="遍历线索二叉树"></a>遍历线索二叉树</h4><p>由于有了结点的前驱和后继，线索二叉树的遍历和在指定次序下查找结点的前驱和后驱算法都变得简单。由此，如果经常需要查找结点在所遍历线性序列中的前驱和后继，则采用线索链表作为存储结构。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141448617.png" srcset="/img/loading.gif" lazyload></p>
+<p>在先序线索化树上找前驱或在后序线索化树上找后继时都比较复杂，此时若需要，可直接建立含4个指针的线索链表。</p>
+<h5 id="遍历中序线索二叉树"><a href="#遍历中序线索二叉树" class="headerlink" title="遍历中序线索二叉树"></a>遍历中序线索二叉树</h5><p><strong>算法步骤</strong></p>
+<ol>
+<li>指针 p 指向根结点</li>
+<li>p 为非空树或遍历未结束时，循环执行以下操作：<ul>
+<li>沿左孩子向下，到达最左下结点 *p ，它是中序的第一个结点</li>
+<li>访问 *p</li>
+<li>沿右线索反复查找当前结点 *p 的后继结点并访问后继结点，直至右线索为0或遍历结束</li>
+<li>转向 p 的右子树</li>
+</ul>
+</li>
+</ol>
+<p><strong>算法描述</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">InOrderTraverse_Thr</span><span class="hljs-params">(BiThrTree T)</span> </span>&#123;<br>	p = T-&gt;lchild;<br><br>	<span class="hljs-keyword">while</span>(p != T) &#123;<br>		<span class="hljs-keyword">while</span>(p-&gt;LTag == <span class="hljs-number">0</span>) &#123;<br>			p = p-&gt;lchild;<br>		&#125;<br><br>		cout &lt;&lt; p-&gt;data;<br><br>		<span class="hljs-keyword">while</span>(p-&gt;RTag == <span class="hljs-number">1</span> &amp;&amp; p-&gt;rchild != T) &#123;<br>			p = p-&gt;rchild;<br>			cout &lt;&lt; p-&gt;data;<br>		&#125;<br><br>		p = p-&gt;child;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>遍历线索二叉树的时间复杂度为O(n), 空间复杂度为0(1), 这是因为线索二叉树的遍历不需要使用栈来实现递归操作。</p>
+<h2 id="树和森林"><a href="#树和森林" class="headerlink" title="树和森林"></a>树和森林</h2><h3 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h3><p>树有以下三种常见的存储结构：</p>
+<ul>
+<li>双亲表示法</li>
+<li>孩子表示法</li>
+<li>孩子兄弟法</li>
+</ul>
+<h4 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a>双亲表示法</h4><p>一组连续的存储单元存储树的结点，每个结点包括数据域 data 和指示双亲结点的域 parent。</p>
+<p>这种存储结构利用了每个结点只有唯一双亲的性质，求树根很容易，但求结点的孩子则需要遍历整个结构。</p>
+<h4 id="孩子表示法"><a href="#孩子表示法" class="headerlink" title="孩子表示法"></a>孩子表示法</h4><p>由于每个结点可能有多棵子树，则使用多重链表，即每个结点有多个指针域，每个指针指向一棵子树的根节点。</p>
+<p>链表中的结点可以使用两种方式：</p>
+<ol>
+<li>多重链表的结点是同构的，但由于很多结点的度小于树的度，因此会浪费大量的空间，及其浪费空间。</li>
+<li>多重链表的结点不同构，有多少度就设置多少空间，但需要加一个 degree 域存储结点的度，这样虽然节省空间，但是操作很不方便。</li>
+</ol>
+<p>与双亲表示法相反， 孩子表示法便于那些涉及孩子的操作的实现。可以把双亲表示法和孩子表示法结合起来，即将双亲表示和孩子链表合在一起。</p>
+<h4 id="孩子兄弟法"><a href="#孩子兄弟法" class="headerlink" title="孩子兄弟法"></a>孩子兄弟法</h4><p>又称二叉树表示法，或二叉链表表示法，即以二叉链表做树的存储结构。</p>
+<p>链表中结点的两个链域分别指向该结点的第一个孩子结点和下一个兄弟结点，分别命名为firstchild 域和nextsibling域。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141514598.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">CSNode</span> &#123;<br>	ElemType data;<br>	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">CSNode</span> *firstchild,*nextsibling;<br>&#125; CSNode,*CSTree;<br></code></pre></td></tr></table></figure>
+
+<p>利用这种存储结构便千实现各种树的操作。首先易于实现找结点孩子等的操作。例如，若要访问结点 x 的第 i 个孩子，则只要先从 firstchild 域找到第 1 个孩子结点，然后沿着孩子结点的 nextsibling 域连续走 i-1 步，便可找到 x 的第 i 个孩子。当然，如果为每个结点增设一个 parent 域，则同样能方便地实现查找双亲的操作。</p>
+<p>这种存储结构的优点是它和二叉树的二叉链表表示完全一样， 便千将一般的树结构转换为二叉树进行处理， 利用二叉树的算法来实现对树的操作。因此孩子兄弟表示法是应用较为普遍的一种树的存储表示方法。</p>
+<h3 id="森林与二叉树的转换"><a href="#森林与二叉树的转换" class="headerlink" title="森林与二叉树的转换"></a>森林与二叉树的转换</h3><p>任何一棵和树对应的二叉树，其根结点的右子树必空。若把森林中第二棵树的根结点看成是第一棵树的根结点的兄弟，则同样可导出森林和二叉树的对应关系。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141533489.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="树和森林的遍历"><a href="#树和森林的遍历" class="headerlink" title="树和森林的遍历"></a>树和森林的遍历</h3><h4 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h4><p>存在两种遍历树的方法：</p>
+<ol>
+<li>先根遍历树：先访问树的根节点，然后依次先根遍历根的每棵子树。</li>
+<li>后根遍历：先依次后根遍历每棵子树，然后访问根节点。</li>
+</ol>
+<h4 id="森林的遍历"><a href="#森林的遍历" class="headerlink" title="森林的遍历"></a>森林的遍历</h4><ol>
+<li>先序遍历森林：<ol>
+<li>访问森林中第一棵树的根节点</li>
+<li>先序遍历第一棵树的根节点的子树森林</li>
+<li>先序遍历除去第一棵树之后剩余树构成的森林</li>
+</ol>
+</li>
+<li>中序遍历森林：<ol>
+<li>中序遍历森林中第一棵树的根节点的子树森林</li>
+<li>访问第一棵树的根结点</li>
+<li>中序遍历除去第一棵树之后剩余的树构成的森林</li>
+</ol>
+</li>
+</ol>
+<h2 id="哈夫曼树及其应用"><a href="#哈夫曼树及其应用" class="headerlink" title="哈夫曼树及其应用"></a>哈夫曼树及其应用</h2><h3 id="哈夫曼树的基本概念"><a href="#哈夫曼树的基本概念" class="headerlink" title="哈夫曼树的基本概念"></a>哈夫曼树的基本概念</h3><p>哈夫曼(Huffman)树又称最优树，是一类带权路径长度最短的树。</p>
+<ul>
+<li>路径：从树中一个结点到另一个结点之间的分支构成这两个结点之间的路径。</li>
+<li>路径长度：路径上的分支数目称作路径长度。</li>
+<li>树的路径长度：从树根到每一结点的路径长度之和。</li>
+<li>权：赋予某个实体的一个量，是对实体的某个或某些属性的数值化描述。</li>
+<li>结点的带权路径长度：从该结点到树根之间的路径长度与结点上权的乘积。</li>
+<li>树的带权路径长度：树中所有叶子结点的带权路径长度之和，通常记作 WPL。</li>
+<li>哈夫曼树：带权路径长度 WPL 最小的二叉树称做最优二叉树或哈夫曼树。</li>
+</ul>
+<p>在哈夫曼树中，权值越大的结点离根结点越近。</p>
+<h3 id="哈夫曼树的构造算法"><a href="#哈夫曼树的构造算法" class="headerlink" title="哈夫曼树的构造算法"></a>哈夫曼树的构造算法</h3><h4 id="哈夫曼树的构造过程"><a href="#哈夫曼树的构造过程" class="headerlink" title="哈夫曼树的构造过程"></a>哈夫曼树的构造过程</h4><ol>
+<li>根据给定的n个权值{w1,w2,…,wn}，构造n棵只有根结点的二叉树，这 n 棵二叉树构成一个森林F。</li>
+<li>在森林 F 中选取两棵根结点的权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根结点的权值为其左、右子树上根结点的权值之和。</li>
+<li>在森林 F 中删除这两棵树，同时将新得到的二叉树加入 F 中。</li>
+<li>重复2、3，直到 F 只含一棵树为止，这棵树就是哈夫曼树。</li>
+</ol>
+<p>这种算法是一种典型的贪心法。</p>
+<h4 id="哈夫曼算法的实现"><a href="#哈夫曼算法的实现" class="headerlink" title="哈夫曼算法的实现"></a>哈夫曼算法的实现</h4><p>哈夫曼树是一种二叉树，但由千哈夫曼树中没有度为 1 的结点，则一棵有n 个叶子结点的哈夫曼树共有 2n-1 个结点，可以存储在一个大小为 2n-1 的一维数组中。树中每个结点还要包含其双亲信息和孩子结点的信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141544873.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> &#123;<br>	<span class="hljs-type">int</span> weight;                 <span class="hljs-comment">// 结点的权值</span><br>	<span class="hljs-type">int</span> parent, lchild, rchild; <span class="hljs-comment">// 结点的双亲、左孩子、右孩子的下标</span><br>&#125; HTNode,*HuffmanTree;          <span class="hljs-comment">// 动态分配数组存储哈夫曼树</span><br></code></pre></td></tr></table></figure>
+
+<p>为了实现方便，数组的 0 号单元不使用，从 1 号单元开始使用，所以数组的大小为 2n。</p>
+<p>将叶子结点集中存储在前面部分 1~n 个位置，而后面的 n-1 个位置存储其余非叶子结点。</p>
+<h5 id="构造哈夫曼树"><a href="#构造哈夫曼树" class="headerlink" title="构造哈夫曼树"></a>构造哈夫曼树</h5><p><strong>算法步骤</strong></p>
+<ol>
+<li>初始化：首先动态申请 2n 个单元；然后循环 2n-1 次，从 1 号单元开始，依次将 1 至 2n-1 所有单元中的双亲、左孩子、右孩子的下标都初始化为0；最后再循环 n 次，输入前 n 个单元中叶子结点的权值。</li>
+<li>创建树：循环 n-1 次，通过 n-1 次的选择、删除与合并来创建哈夫曼树。选择是从当前森林中选择双亲为 0 且权值最小的两个树根结点 s1 和s2；删除是指将结点 s1 和 s2 的双亲改为非0；合并就是将 s1 和 s2 的权值和作为一个新结点的权值依次存入到数组的第 n+l 之后的单元中，同时记录这个新结点左孩子的下标为 s1， 孩子的下标为 s2。</li>
+</ol>
+<p><strong>算法描述</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">CreateHuffmanTree</span><span class="hljs-params">(HuffmanTree &amp;HT, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>	<span class="hljs-comment">// 构造哈夫曼树</span><br>	<span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">1</span>)<br>		<span class="hljs-keyword">return</span>;<br><br>	m = <span class="hljs-number">2</span> * n - <span class="hljs-number">1</span>;<br>	HT = <span class="hljs-keyword">new</span> HTNode[m + <span class="hljs-number">1</span>];        <span class="hljs-comment">// 0 号单元未用，所以需要动态分配 m+1 个单元，HT[m] 表示根节点</span><br><br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;      <span class="hljs-comment">// 将 1~m 号单元中的双亲、左孩子、右孩子的下标都初始化为 0</span><br>		HT[i].parent = <span class="hljs-number">0</span>;<br>		HT[i].lchild = <span class="hljs-number">0</span>;<br>		HT[i].rchild = <span class="hljs-number">0</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;      <span class="hljs-comment">// 输入前 n 个单元中叶子结点的权值</span><br>		cin &gt;&gt; HT[i].weight;<br>	&#125;<br><br>	<span class="hljs-keyword">for</span>(i = n + <span class="hljs-number">1</span>, i &lt;= m; ++i) &#123;  <span class="hljs-comment">// 通过 n-1 次的选择、删除、合并来创建哈夫曼树</span><br>		<span class="hljs-built_in">Select</span>(HT, i - <span class="hljs-number">1</span>, s1, s2)<br>		HT[s1].parent = i;         <span class="hljs-comment">// 在 HT[k] 中选择两个其双亲域为 0 且权值最小的结点，并返回它们在 HT 中的序号 sl 和 s2</span><br>		HT[s2].parent = i;<br>		HT[i].lchild = s1;         <span class="hljs-comment">// 得到新结点 i, 从森林中删除 s1, s2, 将 s1 和 s2 的双亲域由 0 改为 1</span><br>		HT[i].rchild = s2;         <span class="hljs-comment">// s1,s2分别作为 i 的左右孩子</span><br>		HT[i].weight = HT[s1].weight + HT[s2].weight;  <span class="hljs-comment">// i 的权值为左右孩子权值之和</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h3><ol>
+<li>前缀编码：如果在一个编码方案中，任一个编码都不是其他任何编码的前缀（最左子串），则称编码是前缀编码。</li>
+<li>哈夫曼编码：对一棵具有 n 个叶子的哈夫曼树，若对树中的每个左分支赋予 0，右分支赋予 1，则从根到每个叶子的路径上，各分支的赋值分别构成一个二进串， 该二进制串就称为哈夫曼编码。</li>
+</ol>
+<p>哈夫曼编码是最优前缀编码</p>
+<h4 id="哈夫曼编码的算法实现"><a href="#哈夫曼编码的算法实现" class="headerlink" title="哈夫曼编码的算法实现"></a>哈夫曼编码的算法实现</h4><p>求哈夫曼编码的主要思想是：依次以叶子为出发点，向上回溯至根结点为止。回溯时走左分支则生成代码 0，走右分支则生成代码 1。</p>
+<p>每个哈夫曼编码是变长编码，因此使用一个指针数组来存放每个字符编码串的首地址。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-type">char</span> **HuffmanCode  <span class="hljs-comment">// 动态分配数组存储哈夫曼编码表</span><br></code></pre></td></tr></table></figure>
+
+<p>为了实现方便， 数组的 0 号单元不使用，从 1 号单元开始使用， 所以数组 HC 的大小为 n+1，即编码表 HC 包括 n+1 行。</p>
+<p>使用动态分配一个长度为 n 的一维数组 cd，根据数组 cd 的字符串长度分配 HC[i] 的存储空间，然后将 cd 的编码复制到 HC[i] 中，用于解决不定长的编码存储分配的问题。</p>
+<p>因为求解编码时是从哈夫曼树的叶子出发， 向上回溯至根结点，是倒置的顺序。所以对于每个字符， 得到的编码顺序是从右向左的，故将编码向数组 cd 存放的顺序也是从后向前的要手动进行一次倒置。</p>
+<p><strong>算法步骤</strong></p>
+<ol>
+<li>分配存储 n 个字符编码的编码表空间 HC，长度为 n+1；分配临时存储每个字符编码的动态数组空间 cd，cd[n-1]置为’\0’。</li>
+<li>逐个求解n个字符的编码，循环n次，执行以下操作：<ul>
+<li>设置变量 start 用于记录编码在cd中存放的位置，start初始时指向最后，即编码结束符位置 n-1；</li>
+<li>设置变量 c 用于记录从叶子结点向上回溯至根结点所经过的结点下标，c 初始时为当前待编码字符的下标 i，f 用于记录 i 的双亲结点的下标；</li>
+<li>从叶子结点向上回溯至根结点，求得字符 i 的编码，当 f 没有到达根结点时，循环执行以下操作：<ul>
+<li>回溯一次 start 向前指一个位置，即 –start；</li>
+<li>若结点 c 是 f 的左孩子，则生成代码 0，否则生成代码 1，生成的代码 0 或 1 保存在 cd[start] 中；</li>
+<li>继续向上回溯，改变 c 和 f 的值。</li>
+</ul>
+</li>
+<li>根据数组 cd 的字符串长度为第 i 个字符编码分配空间 HC[i]，然后将数组 cd 中的编码复制到 HC[i] 中。</li>
+</ul>
+</li>
+<li>释放临时空间cd。</li>
+</ol>
+<p><strong>算法描述</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">CreatHuffmanCode</span><span class="hljs-params">(HuffmanTree HT, HuffmanCode &amp;HC, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>	<span class="hljs-comment">// 从叶子到根逆向求每个字符的哈夫曼编码，存储在编码表 HC 中</span><br>	HC = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>* [n + <span class="hljs-number">1</span>];         <span class="hljs-comment">// 分配存储 n 个字符编码的编码表空间</span><br>	cd = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>[n];               <span class="hljs-comment">// 分配临时存放每个字符编码的动态数组空间</span><br>	cd[n - <span class="hljs-number">1</span>] = <span class="hljs-string">&#x27;\0&#x27;</span>;               <span class="hljs-comment">// 编码结束符</span><br><br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;       <span class="hljs-comment">// 逐个字符求哈夫曼编码</span><br>		start = n - <span class="hljs-number">1</span>;              <span class="hljs-comment">// start 开始时指向最后，即编码结束符位置</span><br>		c = i;                      <span class="hljs-comment">// f 指向结点 c 的双亲结点</span><br>		f = HT[i].parent;<br><br>		<span class="hljs-keyword">while</span>(f != <span class="hljs-number">0</span>) &#123;             <span class="hljs-comment">// 从叶子结点开始向上回溯，直到根结点</span><br>			-start;                 <span class="hljs-comment">// 回溯一次 start 向前指一个位置</span><br><br>			<span class="hljs-keyword">if</span>(HT[f].lchild == c)   <span class="hljs-comment">// 结点 c 是 f 的左孩子，则生成代码 0</span><br>				cd[start] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>			<span class="hljs-keyword">else</span>                    <span class="hljs-comment">// 结点 c 是 f 的右孩子，则生成代码 1</span><br>				cd[start] = <span class="hljs-string">&#x27;1&#x27;</span>;<br><br>			c = f;                  <span class="hljs-comment">// 继续向上回溯</span><br>			f = HT[f].parent;<br>		&#125;<br><br>		HC[i] = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>[n - start];<span class="hljs-comment">// 为第 i 个字符编码分配空间</span><br>		<span class="hljs-built_in">strcpy</span>(HC[i], &amp;cd[start]);  <span class="hljs-comment">// 将求得的编码从临时空间 cd 复制到 HC 的当前行中</span><br>	&#125;<br><br>	<span class="hljs-keyword">delete</span> cd;                      <span class="hljs-comment">// 释放临时空间</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504141736792.png" srcset="/img/loading.gif" lazyload></p>
+
                 
               </div>
             
@@ -534,7 +665,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/24/%E5%B9%BB%E8%B1%A1%E2%80%94%E2%80%94%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8F%A5%E5%AD%90/" title="幻象——有趣的句子">
+                      <a href="/2025/03/24/%E8%AF%BB%E4%B9%A6/%E5%B9%BB%E8%B1%A1%E2%80%94%E2%80%94%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8F%A5%E5%AD%90/" title="幻象——有趣的句子">
                         <span class="hidden-mobile">幻象——有趣的句子</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
