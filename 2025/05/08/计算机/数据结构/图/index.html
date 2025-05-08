@@ -19,12 +19,12 @@
   <meta name="author" content="SuperTag">
   <meta name="keywords" content="">
   
-    <meta name="description" content="图的定义和基本术语图的定义图(Graph)G由两个集合V和E组成，记为G&#x3D;(V,E) , 其中V是顶点的有穷非空集合，E是V中顶点偶对的有穷集合，这些顶点偶对称为边。 图的基本术语  图的类型定义抽象数据类型图的定义如下： 1TODO  图的存储结构由于图结构的特殊性，无法使用线性存储结构进行存储，因此使用链式存储表示图。 邻接矩阵邻接矩阵表示法邻接矩阵的定义：  如果G是网，则可以定义">
+    <meta name="description" content="图的定义和基本术语图的定义图(Graph)G 由两个集合 V 和 E 组成，记为 G&#x3D;(V,E) , 其中 V 是顶点的有穷非空集合，E 是 V 中顶点偶对的有穷集合，这些顶点偶对称为边。 图的基本术语  图的类型定义抽象数据类型图的定义如下： 1TODO  图的存储结构由于图结构的特殊性，无法使用线性存储结构进行存储，因此使用链式存储表示图。 邻接矩阵邻接矩阵表示法邻接矩阵的定义：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线性表">
-<meta property="og:url" content="https://nice2006.github.io/2025/03/23/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/index.html">
+<meta property="og:title" content="图">
+<meta property="og:url" content="https://nice2006.github.io/2025/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/index.html">
 <meta property="og:site_name" content="SuperTag 的 blog">
-<meta property="og:description" content="图的定义和基本术语图的定义图(Graph)G由两个集合V和E组成，记为G&#x3D;(V,E) , 其中V是顶点的有穷非空集合，E是V中顶点偶对的有穷集合，这些顶点偶对称为边。 图的基本术语  图的类型定义抽象数据类型图的定义如下： 1TODO  图的存储结构由于图结构的特殊性，无法使用线性存储结构进行存储，因此使用链式存储表示图。 邻接矩阵邻接矩阵表示法邻接矩阵的定义：  如果G是网，则可以定义">
+<meta property="og:description" content="图的定义和基本术语图的定义图(Graph)G 由两个集合 V 和 E 组成，记为 G&#x3D;(V,E) , 其中 V 是顶点的有穷非空集合，E 是 V 中顶点偶对的有穷集合，这些顶点偶对称为边。 图的基本术语  图的类型定义抽象数据类型图的定义如下： 1TODO  图的存储结构由于图结构的特殊性，无法使用线性存储结构进行存储，因此使用链式存储表示图。 邻接矩阵邻接矩阵表示法邻接矩阵的定义：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504271933603.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504271933470.png">
@@ -34,8 +34,8 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505081928563.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505081939682.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505081940208.png">
-<meta property="article:published_time" content="2025-03-23T07:55:42.000Z">
-<meta property="article:modified_time" content="2025-05-08T12:56:47.845Z">
+<meta property="article:published_time" content="2025-05-08T07:55:42.000Z">
+<meta property="article:modified_time" content="2025-05-08T13:00:24.883Z">
 <meta property="article:author" content="SuperTag">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="数据结构">
@@ -46,7 +46,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>线性表 - SuperTag 的 blog</title>
+  <title>图 - SuperTag 的 blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="线性表"></span>
+            <span id="subtitle" data-typed-text="图"></span>
           
         </div>
 
@@ -228,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-23 15:55" pubdate>
-          2025年3月23日 下午
+        <time datetime="2025-05-08 15:55" pubdate>
+          2025年5月8日 下午
         </time>
       </span>
     
@@ -297,12 +297,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">线性表</h1>
+            <h1 id="seo-header">图</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-05-08T20:56:47+08:00
+                    本文最后更新于 2025-05-08T21:00:24+08:00
                   
                   
 
@@ -312,7 +312,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="图的定义和基本术语"><a href="#图的定义和基本术语" class="headerlink" title="图的定义和基本术语"></a>图的定义和基本术语</h2><h3 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h3><p>图(Graph)G由两个集合V和E组成，记为G&#x3D;(V,E) , 其中V是顶点的有穷非空集合，E是V中顶点偶对的有穷集合，这些顶点偶对称为边。</p>
+                <h2 id="图的定义和基本术语"><a href="#图的定义和基本术语" class="headerlink" title="图的定义和基本术语"></a>图的定义和基本术语</h2><h3 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h3><p>图(Graph)G 由两个集合 V 和 E 组成，记为 G&#x3D;(V,E) , 其中 V 是顶点的有穷非空集合，E 是 V 中顶点偶对的有穷集合，这些顶点偶对称为边。</p>
 <h3 id="图的基本术语"><a href="#图的基本术语" class="headerlink" title="图的基本术语"></a>图的基本术语</h3><p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504271933603.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504271933470.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="图的类型定义"><a href="#图的类型定义" class="headerlink" title="图的类型定义"></a>图的类型定义</h2><p>抽象数据类型图的定义如下：</p>
@@ -321,10 +321,10 @@
 <h2 id="图的存储结构"><a href="#图的存储结构" class="headerlink" title="图的存储结构"></a>图的存储结构</h2><p>由于图结构的特殊性，无法使用线性存储结构进行存储，因此使用链式存储表示图。</p>
 <h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><h4 id="邻接矩阵表示法"><a href="#邻接矩阵表示法" class="headerlink" title="邻接矩阵表示法"></a>邻接矩阵表示法</h4><p>邻接矩阵的定义：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504271936691.png" srcset="/img/loading.gif" lazyload></p>
-<p>如果G是网，则可以定义为：</p>
+<p>如果 G 是网，则可以定义为：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504271936141.png" srcset="/img/loading.gif" lazyload></p>
 <p>由于邻接矩阵用于存储各个边之间的关系，并不存储各个结点的内容，因此需要使用一个一维数组存储顶点信息，形式说明如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MaxInt 32767             <span class="hljs-comment">// 表示极大值</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MVNum 100                <span class="hljs-comment">// 最大顶点数</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">char</span> VerTexType;         <br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ArcType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span><br>&#123;<br>    VerTexType vexs[MVNum];      <span class="hljs-comment">// 顶点表</span><br>    ArcType arcs[MVNum][MVNum];  <span class="hljs-comment">// 邻接矩阵</span><br>    <span class="hljs-type">int</span> vexnum,arxnum;           <span class="hljs-comment">// 图的当前点数和边数</span><br>&#125;AMGraph;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MaxInt 32767             <span class="hljs-comment">// 表示极大值</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MVNum 100                <span class="hljs-comment">// 最大顶点数</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">char</span> VerTexType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ArcType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span><br>&#123;<br>    VerTexType vexs[MVNum];      <span class="hljs-comment">// 顶点表</span><br>    ArcType arcs[MVNum][MVNum];  <span class="hljs-comment">// 邻接矩阵</span><br>    <span class="hljs-type">int</span> vexnum,arxnum;           <span class="hljs-comment">// 图的当前点数和边数</span><br>&#125;AMGraph;<br></code></pre></td></tr></table></figure>
 
 <h4 id="采用邻接矩阵表示法创建无向网"><a href="#采用邻接矩阵表示法创建无向网" class="headerlink" title="采用邻接矩阵表示法创建无向网"></a>采用邻接矩阵表示法创建无向网</h4><p>什么时候采用邻接矩阵表示法？已知一个图的点和边的时候使用。</p>
 <p><strong>算法步骤</strong></p>
@@ -338,26 +338,26 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">Status <span class="hljs-title">CreateUDN</span><span class="hljs-params">(AMGraph &amp;G)</span></span><br><span class="hljs-function"></span>&#123;<span class="hljs-comment">// 采用邻接矩阵表示法，创建无向图</span><br>    cin &gt;&gt; G.vexnum &gt;&gt; G.arxnum;       <span class="hljs-comment">// 输入总顶点数，总边数</span><br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; G.vexnum; i++)&#123;     <span class="hljs-comment">// 依次输入各个点的信息</span><br>        cin &gt;&gt; G.vexs[i];<br>    &#125;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; G.vexnum; i++)&#123;     <span class="hljs-comment">// 循环对矩阵每个边的权值进行初始化</span><br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; G.vexnum; j++)&#123;<br>            G.arcs[i][j] = MaxInt;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(k = <span class="hljs-number">0</span>; k &lt; G.arcnum; k++)&#123;     <span class="hljs-comment">// 构造邻接矩阵</span><br>        cin &gt;&gt; v1 &gt;&gt; v2 &gt;&gt; w;          <span class="hljs-comment">// 输入某条边依附的顶点和权值</span><br>        i = <span class="hljs-built_in">LocateVex</span>(G, v1);          <span class="hljs-comment">// 确定 v1 和 v2 在 G 中的位置，也就是顶点数组的下标</span><br>        j = <span class="hljs-built_in">LocateVex</span>(G, v2);<br>        G.arcs[i][j] = w;              <span class="hljs-comment">// 边 &lt;v1, v2&gt; 的权值置为 w</span><br>        G.arcs[j][i] = G.arcs[i][j];   <span class="hljs-comment">// 对称边也是一样</span><br>    &#125;                                  <span class="hljs-comment">// for</span><br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>算法分析</strong></p>
-<p>算法时间复杂度为0(n^2^)</p>
+<p>算法时间复杂度为 0(n^2^)</p>
 <h4 id="邻接矩阵表示法的优缺点"><a href="#邻接矩阵表示法的优缺点" class="headerlink" title="邻接矩阵表示法的优缺点"></a>邻接矩阵表示法的优缺点</h4><ol>
 <li>优点<ul>
-<li>由于有A[i][j]，因此可以判断两个顶点是否有边。</li>
+<li>由于有 A[i][j]，因此可以判断两个顶点是否有边。</li>
 <li>由于有邻接矩阵表，因此可以计算各个结点的度</li>
 </ul>
 </li>
 <li>缺点<ul>
 <li>不便于增加和删除结点</li>
-<li>不便于统计边的数目，完成这个工作需要扫描邻接矩阵所有元素，时间复杂度为O(n^2^)</li>
+<li>不便于统计边的数目，完成这个工作需要扫描邻接矩阵所有元素，时间复杂度为 O(n^2^)</li>
 <li>空间复杂度高</li>
 </ul>
 </li>
 </ol>
 <h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><h4 id="邻接表表示法"><a href="#邻接表表示法" class="headerlink" title="邻接表表示法"></a>邻接表表示法</h4><p>邻接表是图的一种链式存储结构。</p>
-<p>图中每个顶点vi建立一个单链表，把与vi相邻接的顶点放在这个链表中，邻接表中每个单链表的第一个结点存放有关顶点的信息，这个结点时链表的表头，其余结点存放有关边的信息。</p>
+<p>图中每个顶点 vi 建立一个单链表，把与 vi 相邻接的顶点放在这个链表中，邻接表中每个单链表的第一个结点存放有关顶点的信息，这个结点时链表的表头，其余结点存放有关边的信息。</p>
 <p>这样邻接表由两个部分组成：表头结点表和边表。</p>
 <ol>
-<li>表头结点表：为了便于随机访问，因此使用顺序结构存储表头结点。表头结点包括数据域和链域。数据域存储顶点vi的有关信息，链域用于指向链表中的第一个结点。</li>
-<li>边表：由表示图中顶点间关系的2n个边链表组成。边链表中边结点包括邻接点域、数据与和链域三部分。邻接点域指示与顶点vi邻接的点在图中的位置，数据域存储和边相关的信息，链域指示与顶点vi邻接的下一条边的结点。</li>
+<li>表头结点表：为了便于随机访问，因此使用顺序结构存储表头结点。表头结点包括数据域和链域。数据域存储顶点 vi 的有关信息，链域用于指向链表中的第一个结点。</li>
+<li>边表：由表示图中顶点间关系的 2n 个边链表组成。边链表中边结点包括邻接点域、数据与和链域三部分。邻接点域指示与顶点 vi 邻接的点在图中的位置，数据域存储和边相关的信息，链域指示与顶点 vi 邻接的下一条边的结点。</li>
 </ol>
 <p>图的邻接表存储结构：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MVNum 100             <span class="hljs-comment">// 最大顶点数</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ArcNode</span>        <span class="hljs-comment">// 边结点</span><br>&#123;<br>    <span class="hljs-type">int</span> adjvex;               <span class="hljs-comment">// 该边指向的顶点位置</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ArcNode</span>* nextarc;  <span class="hljs-comment">// 指向下一条边的指针</span><br>    OtherInfo info;           <span class="hljs-comment">// 和边相关的信息</span><br>&#125;ArcNode;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">VNode</span>          <span class="hljs-comment">// 顶点信息</span><br>&#123;<br>    VerTexType data;          <span class="hljs-comment">// 指向第一条依附该顶点的边的指针</span><br>    ArcNode* firstarc;        <span class="hljs-comment">// AdjList 表示邻接表类型</span><br>&#125;VNode, AdjList[MVNum];<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span>                <span class="hljs-comment">// 邻接表</span><br>&#123;<br>    AdjList vertices;<br>    <span class="hljs-type">int</span> vexnum,arcnum;        <span class="hljs-comment">// 图的当前顶点数和边数</span><br>&#125;ALGraph;<br></code></pre></td></tr></table></figure>
@@ -365,16 +365,16 @@
 <h4 id="采用邻接表表示法创建无向图"><a href="#采用邻接表表示法创建无向图" class="headerlink" title="采用邻接表表示法创建无向图"></a>采用邻接表表示法创建无向图</h4><p><strong>算法步骤</strong></p>
 <ol>
 <li>输入总顶点数和总边数</li>
-<li>依次输入点的信息存入顶点表中，使每个表头结点的指针域初始化为NULL</li>
-<li>创建邻接表。依次输入每条边依附的两个顶点，确定这两个顶点的序号i和j之后，将此边结点分别插入vi和vj对应的两个边链表的头部</li>
+<li>依次输入点的信息存入顶点表中，使每个表头结点的指针域初始化为 NULL</li>
+<li>创建邻接表。依次输入每条边依附的两个顶点，确定这两个顶点的序号 i 和 j 之后，将此边结点分别插入 vi 和 vj 对应的两个边链表的头部</li>
 </ol>
 <p><strong>算法描述</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">Status <span class="hljs-title">CreateUDG</span><span class="hljs-params">(ALGraph &amp;G)</span></span><br><span class="hljs-function"></span>&#123;<span class="hljs-comment">//采用邻接表表示法，创建无向图 G</span><br>    cin &gt;&gt; G.vexnum &gt;&gt; G.arcnum;   <span class="hljs-comment">// 输入总顶点数，总边数</span><br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; G.vexnum; ++i)  <span class="hljs-comment">// 输入各点，构造表头结点表</span><br>    &#123;<br>        cin &gt;&gt; G.vertices[i].data; <span class="hljs-comment">// 输入顶点值</span><br>        G.vertices[i].firstarc = <span class="hljs-literal">NULL</span>;  <span class="hljs-comment">// 初始化表头结点的指针域为NULL</span><br>    &#125;<br>    <span class="hljs-keyword">for</span>(k = <span class="hljs-number">0</span>; k &lt; G.arcnum; ++k)  <span class="hljs-comment">// 输入各边，构造邻接表</span><br>    &#123;<br>        cin &gt;&gt; v1 &gt;&gt; v2;           <span class="hljs-comment">// 输入一条边依附的两个顶点</span><br>        i = <span class="hljs-built_in">LocateVex</span>(G, v1); j = <span class="hljs-built_in">LocateVex</span>(G, v2);<br>        <span class="hljs-comment">// 确定v1和v2在G中的位置，即顶点在G.vertices中的序号</span><br>        p1 = <span class="hljs-keyword">new</span> ArcNode;  <span class="hljs-comment">// 生成一个新的结点 *p1</span><br>        p1-&gt;adjvex = j;    <span class="hljs-comment">// 邻接点序号为j</span><br>        p1-&gt;nextarc = G.vertices[i].firstarc; G.vertices[i].firstarc = p1;<br>        <span class="hljs-comment">// 将新节点*p1插入顶点vi的边表头部</span><br>        p2 = <span class="hljs-keyword">new</span> ArcNode;  <span class="hljs-comment">// 生成另一个对称的新的边结点*p2</span><br>        p2-&gt;adjvex = i;    <span class="hljs-comment">// 邻接点序号为i</span><br>        p2-&gt;nextarc = G.vertices[j].firstarc; G.vertices[j].firstarc = p2;<br>        <span class="hljs-comment">// 将新结点*p2插入顶点vi的边表头部</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <p><strong>算法分析</strong></p>
 <p>时间复杂度：O(n+e)</p>
-<p>建立有向图的邻接表更简单，每读入一个顶点对序号&lt;i,j&gt;，仅需生成一个邻接点序号为j的边表结点，将其插入到vi的边链表头部即可。</p>
-<p>建立网的邻接表，可以将边的权值存储在info域中。</p>
+<p>建立有向图的邻接表更简单，每读入一个顶点对序号&lt;i,j&gt;，仅需生成一个邻接点序号为 j 的边表结点，将其插入到 vi 的边链表头部即可。</p>
+<p>建立网的邻接表，可以将边的权值存储在 info 域中。</p>
 <h4 id="邻接表表示法的优缺点"><a href="#邻接表表示法的优缺点" class="headerlink" title="邻接表表示法的优缺点"></a>邻接表表示法的优缺点</h4><p>邻接矩阵和邻接表是图的两种最常用存储结构</p>
 <ol>
 <li>优点<ul>
@@ -384,15 +384,15 @@
 </ul>
 </li>
 <li>缺点<ul>
-<li>不便于判断顶点之间是否有边，要判定vi和vj有边，就得扫描第i个边表</li>
+<li>不便于判断顶点之间是否有边，要判定 vi 和 vj 有边，就得扫描第 i 个边表</li>
 <li>不便于计算有向图各个顶点的度。</li>
 </ul>
 </li>
 </ol>
 <h3 id="十字链表（没看懂）"><a href="#十字链表（没看懂）" class="headerlink" title="十字链表（没看懂）"></a>十字链表（没看懂）</h3><p>看作有向图的邻接表和逆邻接表结合起来得到的一种链表。这个结构中每个弧都有一个结点，每个顶点也有一个结点。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202504300915695.png" srcset="/img/loading.gif" lazyload></p>
-<p>弧结点：五个域，尾域-&gt;指示弧尾在图中的位置；头域同上；链域hlink-&gt;指向弧头相同的下一条弧；链域tlink-&gt;指向弧尾相同的下一条弧；info域-&gt;指向该弧的信息。</p>
-<p>弧头相同的弧在同一链表上，弧尾相同的弧在同一链表上。头节点就是顶点结点，顶点结点由三个域组成：data域-&gt;和顶点相关的信息；firstin、firstout是两个链域，分别指向以该顶点为弧头或弧尾的第一个弧结点。</p>
+<p>弧结点：五个域，尾域-&gt;指示弧尾在图中的位置；头域同上；链域 hlink-&gt;指向弧头相同的下一条弧；链域 tlink-&gt;指向弧尾相同的下一条弧；info 域-&gt;指向该弧的信息。</p>
+<p>弧头相同的弧在同一链表上，弧尾相同的弧在同一链表上。头节点就是顶点结点，顶点结点由三个域组成：data 域-&gt;和顶点相关的信息；firstin、firstout 是两个链域，分别指向以该顶点为弧头或弧尾的第一个弧结点。</p>
 <p>如果将有向图的邻接矩阵看作稀疏矩阵，那么十字链表也可以看作是邻接矩阵的链表存储结构。</p>
 <p>在图的十字链表中，弧结点所在的链表不是循环链表，结点之间的相对顺序自然形成，不一定按顶点序号有序，表头结点是顶点结点，它们之间按照顺序存储，而不是链式存储。</p>
 <p>存储结构如下（没看懂）：</p>
@@ -400,14 +400,14 @@
 <p>十字链表存储表示的形式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//－－－－有向图的十字链表存储表示－－－－</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX_VERTEX_NUM 20</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ArcBox</span><br>&#123;<br>    <span class="hljs-type">int</span> tailvext, headvex;           <span class="hljs-comment">//该弧的尾和头顶点的位置</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ArcBox</span> *hlink, *tlink;    <span class="hljs-comment">//分别为弧头相同和弧尾相同的弧的链域</span><br>    InfoType *info;                  <span class="hljs-comment">//该弧相关信息的指针</span><br>&#125; ArcBox;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">VexNode</span><br>&#123;<br>    VertexType data;<br>    ArcBox *firstin, *firstout;      <span class="hljs-comment">//分别指向该顶点第一条入弧和出弧</span><br>&#125; VexNode;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span><br>&#123;<br>    VexNode xlist[MAX_VERTEX_NUM];   <span class="hljs-comment">//表头向量</span><br>    <span class="hljs-type">int</span> vexnum, arcnum;              <span class="hljs-comment">//有向图的当前顶点数和弧数</span><br>&#125; OLGraph;<br></code></pre></td></tr></table></figure>
 
-<p>只需要输入n个顶点的信息和e条弧的信息，便可建立该有向图的十字链表。在十字链表中既容易找到以vi为尾的弧，也容易找到以vi为头的弧，因此容易求得顶点的出度和入度。</p>
+<p>只需要输入 n 个顶点的信息和 e 条弧的信息，便可建立该有向图的十字链表。在十字链表中既容易找到以 vi 为尾的弧，也容易找到以 vi 为头的弧，因此容易求得顶点的出度和入度。</p>
 <p>在某些特定场景下十字链表十分有用。</p>
-<h3 id="邻接多重表"><a href="#邻接多重表" class="headerlink" title="邻接多重表"></a>邻接多重表</h3><p>如果在图的操作中需要对边进行操作，需要找到一条边对应的两个结点，但邻接表中每条边(v<del>i</del>,v<del>j</del>)有两个结点，分别在第i个和第j个链表中，这样不便于实现。</p>
-<p>邻接多重表的结构和十字链表类似。邻接多重表中，每一条边用一个结点表示，由下面的6个域构成：</p>
+<h3 id="邻接多重表"><a href="#邻接多重表" class="headerlink" title="邻接多重表"></a>邻接多重表</h3><p>如果在图的操作中需要对边进行操作，需要找到一条边对应的两个结点，但邻接表中每条边(v<del>i</del>,v<del>j</del>)有两个结点，分别在第 i 个和第 j 个链表中，这样不便于实现。</p>
+<p>邻接多重表的结构和十字链表类似。邻接多重表中，每一条边用一个结点表示，由下面的 6 个域构成：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505081939682.png" srcset="/img/loading.gif" lazyload></p>
 <p>每个顶点也用一个结点表示，结构如下：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505081940208.png" srcset="/img/loading.gif" lazyload></p>
-<p>data域存储和顶点相关的信息，firstdge域指示第一条依附于该顶点的边。</p>
+<p>data 域存储和顶点相关的信息，firstdge 域指示第一条依附于该顶点的边。</p>
 <p>在邻接多重表中，所有依附于同一顶点的边串联在同一链表中。由于每条边依附于两个顶点，则每个边结点同时链接在两个链表中。因此，对于无向图而言，邻接多重表和邻接表的差别仅仅在于同一条边在邻接表中用两个结点表示，而在邻接多重表中只有一个结点。</p>
 <p>邻接表的类型说明：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//－－－－－无向图的邻接多重表存储表示－－－－－</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX_VERTEX_NUM 20</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> &#123;unvisited, visited&#125; VisitIf;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">EBox</span> &#123;<br>    VisitIf mark;               <span class="hljs-comment">// 访问标记</span><br>    <span class="hljs-type">int</span> ivex, jvex;             <span class="hljs-comment">// 该边依附的两个顶点的位置</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">EBox</span> *ilink, *jlink; <span class="hljs-comment">// 分别指向依附这两个顶点的下一条边</span><br>    InfoType *info;             <span class="hljs-comment">// 该边信息指针</span><br>&#125; EBox;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">VexBox</span> &#123;<br>    VertexType data;   <span class="hljs-comment">// 顶点数据</span><br>    EBox *firstedge;   <span class="hljs-comment">// 指向第一条依附该顶点的边</span><br>&#125; VexBox;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> &#123;<br>    VexBox adjmulist[MAX_VERTEX_NUM];<br>    <span class="hljs-type">int</span> vexnum, edgenum;  <span class="hljs-comment">// 无向图的当前顶点数和边数</span><br>&#125; AMLGraph;<br></code></pre></td></tr></table></figure>
@@ -418,41 +418,41 @@
 <li>广度优先搜索</li>
 </ul>
 <h3 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h3><p><a target="_blank" rel="noopener" href="https://www.yuque.com/flagsupertag/ym72ve/aizyb1etya414gcl">先前的笔记</a></p>
-<h4 id="遍历过程"><a href="#遍历过程" class="headerlink" title="遍历过程"></a>遍历过程</h4><p>DFS的遍历类似于树的先序遍历，对于一个连通图，深度优先搜索遍历的过程如下：</p>
+<h4 id="遍历过程"><a href="#遍历过程" class="headerlink" title="遍历过程"></a>遍历过程</h4><p>DFS 的遍历类似于树的先序遍历，对于一个连通图，深度优先搜索遍历的过程如下：</p>
 <ol>
-<li>从图中某个顶点v出发，访问v</li>
+<li>从图中某个顶点 v 出发，访问 v</li>
 <li>找出刚访问过的顶点的第一个未被访问的邻接点，访问该结点<br>重复以上步骤，直到刚访问过的顶点没有未被访问的邻接点为止</li>
 <li>返回前一个访问过的且仍有未被访问的邻接点的顶点，找出该顶点的下一个未被访问的邻接点，访问该结点</li>
-<li>重复2、3，直到遍历完成</li>
+<li>重复 2、3，直到遍历完成</li>
 </ol>
-<h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><p>深度优先搜索遍历连通图是一个递归过程。同时需要设置标志数组用于区分是否被访问，初始为false，访问过为true，这里定义为visited[n]。</p>
-<h4 id="DFS遍历连通图"><a href="#DFS遍历连通图" class="headerlink" title="DFS遍历连通图"></a>DFS遍历连通图</h4><p><strong>算法步骤</strong></p>
+<h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><p>深度优先搜索遍历连通图是一个递归过程。同时需要设置标志数组用于区分是否被访问，初始为 false，访问过为 true，这里定义为 visited[n]。</p>
+<h4 id="DFS-遍历连通图"><a href="#DFS-遍历连通图" class="headerlink" title="DFS 遍历连通图"></a>DFS 遍历连通图</h4><p><strong>算法步骤</strong></p>
 <ol>
-<li>从图中某个顶点v出发，访问v，并设置标志位visited[v]为true</li>
-<li>依次检查v的所有邻接点w，如果标志数组位false，再从w出发进行递归遍历，直到图中所有顶点都被访问</li>
+<li>从图中某个顶点 v 出发，访问 v，并设置标志位 visited[v]为 true</li>
+<li>依次检查 v 的所有邻接点 w，如果标志数组位 false，再从 w 出发进行递归遍历，直到图中所有顶点都被访问</li>
 </ol>
 <p><strong>算法描述</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">bool</span> visited[MVNum];  <span class="hljs-comment">// 访问标志数组，其初值位false</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(Graph G, <span class="hljs-type">int</span> v)</span> </span>&#123;  <span class="hljs-comment">// 从第v个顶点出发递归遍历图G</span><br>	cout &lt;&lt; v;        <span class="hljs-comment">// 访问第v个顶点，同时设置标志位</span><br>	visited[v] = <span class="hljs-literal">true</span>;<br><br>	<span class="hljs-comment">// 依次检查v的所有邻接点w，FirstAdjVex(G,v)表示v的第一个邻接点</span><br>	<span class="hljs-comment">// NextAdjVex(G,v)表示v相对于w的下一个邻接点，w&gt;=0表示存在邻接点</span><br>	<span class="hljs-keyword">for</span>(w = <span class="hljs-built_in">FirstAdjVex</span>(G, v); w &gt;= <span class="hljs-number">0</span>; w = <span class="hljs-built_in">NextAdjVex</span>(G, v, w))<br><br>		<span class="hljs-keyword">if</span>(!visited[w])  <span class="hljs-comment">// 对v的尚未访问的邻接顶点w递归调用DFS</span><br>			<span class="hljs-built_in">DFS</span>(G, w);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="DFS遍历非联通图"><a href="#DFS遍历非联通图" class="headerlink" title="DFS遍历非联通图"></a>DFS遍历非联通图</h4><p>遍历非联通图需要循环调用以上算法，保证对每个“子图”都遍历完成。</p>
+<h4 id="DFS-遍历非联通图"><a href="#DFS-遍历非联通图" class="headerlink" title="DFS 遍历非联通图"></a>DFS 遍历非联通图</h4><p>遍历非联通图需要循环调用以上算法，保证对每个“子图”都遍历完成。</p>
 <p><strong>算法描述</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFSTraverse</span><span class="hljs-params">(Graph G)</span> </span>&#123;  <span class="hljs-comment">// 对非联通图G做DFS</span><br><br>	<span class="hljs-comment">// 访问标志数组初始化</span><br>	<span class="hljs-keyword">for</span>(v = <span class="hljs-number">0</span>; v &lt; G.vexnum; v++)<br>		visited[v] = <span class="hljs-literal">false</span>;<br><br>	<span class="hljs-comment">// 循环遍历</span><br>	<span class="hljs-keyword">for</span>(v = <span class="hljs-number">0</span>; v &lt; G.vexnum; v++)<br>		<span class="hljs-keyword">if</span>(!visited[v])<br>			<span class="hljs-built_in">DFS</span>(G, v);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>对于不同的图的存储结构，查找邻接点的操作FirstAdjVex(G, v)、NextAdjVex(G, v, w)不同。</p>
-<h4 id="采用邻接矩阵表示DFS"><a href="#采用邻接矩阵表示DFS" class="headerlink" title="采用邻接矩阵表示DFS"></a>采用邻接矩阵表示DFS</h4><p><strong>算法描述</strong></p>
+<p>对于不同的图的存储结构，查找邻接点的操作 FirstAdjVex(G, v)、NextAdjVex(G, v, w)不同。</p>
+<h4 id="采用邻接矩阵表示-DFS"><a href="#采用邻接矩阵表示-DFS" class="headerlink" title="采用邻接矩阵表示 DFS"></a>采用邻接矩阵表示 DFS</h4><p><strong>算法描述</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFS_AM</span><span class="hljs-params">(AMGraph G, <span class="hljs-type">int</span> v)</span> </span>&#123;  <span class="hljs-comment">// 图G为邻接矩阵类型</span><br><br>	<span class="hljs-comment">// 访问第v个顶点，设置标志位</span><br>	cout &lt;&lt; v;<br>	visited[v] = <span class="hljs-literal">true</span>;<br><br>	<span class="hljs-keyword">for</span>(w = <span class="hljs-number">0</span>; w &lt; G.vexnum; w++)  <span class="hljs-comment">// 依次检查邻接矩阵v所在行</span><br><br>		<span class="hljs-comment">// G.arcs[v][w]!=0表示w是v的邻接点，如果w未访问，则递归调用DFS</span><br>		<span class="hljs-keyword">if</span>(G.arcs[v][w] != <span class="hljs-number">0</span> &amp;&amp; (!visited[w]))<br>			<span class="hljs-built_in">DFS</span>(G, w);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>邻接矩阵法明显好懂一些。</p>
-<h4 id="采用邻接表法表示DFS"><a href="#采用邻接表法表示DFS" class="headerlink" title="采用邻接表法表示DFS"></a>采用邻接表法表示DFS</h4><p><strong>算法描述</strong></p>
+<h4 id="采用邻接表法表示-DFS"><a href="#采用邻接表法表示-DFS" class="headerlink" title="采用邻接表法表示 DFS"></a>采用邻接表法表示 DFS</h4><p><strong>算法描述</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFS_AL</span><span class="hljs-params">(ALGraph G, <span class="hljs-type">int</span> v)</span> </span>&#123;  <span class="hljs-comment">// 图G为邻接表类型</span><br><br>	<span class="hljs-comment">// 访问第v个顶点，同时设置标志位</span><br>	cout &lt;&lt; v;<br>	visited[v] = <span class="hljs-literal">true</span>;<br><br>	<span class="hljs-comment">// p指向v的边链表的第一个结点</span><br>	p = G.vertices[v].firstarc;<br><br>	<span class="hljs-keyword">while</span>(p != <span class="hljs-literal">NULL</span>) &#123;  <span class="hljs-comment">// 边结点非空</span><br>		w = p-&gt;adjvex;  <span class="hljs-comment">// w是v的邻接点</span><br><br>		<span class="hljs-keyword">if</span>(!visited[w])  <span class="hljs-comment">// 如果未访问，则递归调用DFS</span><br>			<span class="hljs-built_in">DFS</span>(G, w);<br><br>		p = p-&gt;nextarc;  <span class="hljs-comment">// p指向下一个结点</span><br>	&#125;  <span class="hljs-comment">// while</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>遍历图的过程实质上是对每个顶点查找邻接点的过程，耗费的时间取决于采用的存储结构。</p>
-<p>使用邻接矩阵时时间复杂度为O(n^2^)，n为顶点数；使用邻接表时时间复杂度为O(n+e)，e为边数。</p>
+<p>使用邻接矩阵时时间复杂度为 O(n^2^)，n 为顶点数；使用邻接表时时间复杂度为 O(n+e)，e 为边数。</p>
 <h3 id="广度优先搜索（BFS）"><a href="#广度优先搜索（BFS）" class="headerlink" title="广度优先搜索（BFS）"></a>广度优先搜索（BFS）</h3><p><a target="_blank" rel="noopener" href="https://www.yuque.com/flagsupertag/ym72ve/atwcat5ryw185hiy">先前的笔记</a></p>
-<h4 id="遍历过程-1"><a href="#遍历过程-1" class="headerlink" title="遍历过程"></a>遍历过程</h4><p>BFS类似树的按层次遍历过程。</p>
+<h4 id="遍历过程-1"><a href="#遍历过程-1" class="headerlink" title="遍历过程"></a>遍历过程</h4><p>BFS 类似树的按层次遍历过程。</p>
 <ol>
-<li>从图中某个顶点v出发，访问v</li>
-<li>依次访问 v的各个未曾访问过的邻接点</li>
+<li>从图中某个顶点 v 出发，访问 v</li>
+<li>依次访问 v 的各个未曾访问过的邻接点</li>
 <li>分别从这些邻接点出发依次访问它们的邻接点，并使“先被访问的顶点的邻接点”先于“后被访问的顶点的邻接点”被访问。<br>重复此步骤，直到遍历完成</li>
 </ol>
 <h4 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h4><p>由于是横向遍历，因此需要使用队列保存被访问过的顶点。</p>
@@ -505,18 +505,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/23/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" title="栈和队列">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">栈和队列</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/23/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" title="线性表">
-                        <span class="hidden-mobile">线性表</span>
+                      <a href="/2025/04/11/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/MFC%E7%AC%94%E8%AE%B0/" title="MFC笔记">
+                        <span class="hidden-mobile">MFC笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
