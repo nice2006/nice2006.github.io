@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505090905959.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505090906561.png">
 <meta property="article:published_time" content="2025-05-08T07:55:42.000Z">
-<meta property="article:modified_time" content="2025-05-09T03:02:23.723Z">
+<meta property="article:modified_time" content="2025-05-18T02:57:04.521Z">
 <meta property="article:author" content="SuperTag">
 <meta property="article:tag" content="计算机">
 <meta property="article:tag" content="数据结构">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k 字
+          4.9k 字
         
       </span>
     
@@ -260,7 +260,7 @@
         
         
         
-          33 分钟
+          41 分钟
         
       </span>
     
@@ -311,7 +311,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-05-09T11:02:23+08:00
+                    本文最后更新于 2025-05-18T10:57:04+08:00
                   
                   
 
@@ -476,6 +476,25 @@
 <h4 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h4><p>由于是横向遍历，因此需要使用队列保存被访问过的顶点。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(Graph G, <span class="hljs-type">int</span> v)</span> </span>&#123;  <span class="hljs-comment">// BFS 非递归遍历</span><br>	cout &lt;&lt; v;  <span class="hljs-comment">// 访问第v个结点</span><br>	visited[v] = <span class="hljs-literal">true</span>;  <span class="hljs-comment">// 设置标志位</span><br>	<span class="hljs-built_in">InitQueue</span>(Q);  <span class="hljs-comment">// 辅助队列Q初始化，设置为空</span><br>	<span class="hljs-built_in">EnQueue</span>(Q, v);  <span class="hljs-comment">// v进队</span><br><br>	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">QueueEmpty</span>(Q)) &#123;  <span class="hljs-comment">// 队列非空</span><br>		<span class="hljs-built_in">DeQueue</span>(Q, u);  <span class="hljs-comment">// 队头元素出队并设置为u</span><br><br>		<span class="hljs-comment">// 依次检查u的所有邻接点w，FirstAdjVex(G,u)表示u的第一个邻接点</span><br>		<span class="hljs-comment">// NextAdjVex(G,u,w)表示u相对于w的下一个邻接点，w&gt;=0表示存在邻接点</span><br>		<span class="hljs-keyword">for</span>(w = <span class="hljs-built_in">FirstAdjVex</span>(G, u); w &gt;= <span class="hljs-number">0</span>; w = <span class="hljs-built_in">NextAdjVex</span>(G, u, w))<br>			<span class="hljs-keyword">if</span>(!visited[w]) &#123;  <span class="hljs-comment">// w为u的尚未访问的邻接顶点</span><br>				cout &lt;&lt; w;  <span class="hljs-comment">// 访问w</span><br>				visited[w] = <span class="hljs-literal">true</span>;  <span class="hljs-comment">// 设置标志数组</span><br>				<span class="hljs-built_in">EnQueue</span>(Q, w);  <span class="hljs-comment">// w进队</span><br>			&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h2 id="图的应用"><a href="#图的应用" class="headerlink" title="图的应用"></a>图的应用</h2><h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><h4 id="普利姆算法"><a href="#普利姆算法" class="headerlink" title="普利姆算法"></a>普利姆算法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// prim算法生成最小生成树</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">MiniSpanTree</span><span class="hljs-params">(MGraph G)</span> &#123;<br>	<span class="hljs-type">int</span> min,i,j,k;<br>	<span class="hljs-type">int</span> adjvex[MAXVEX];    <span class="hljs-comment">// 保持相关顶点下标</span><br>	<span class="hljs-type">int</span> lowcost[MAXVEX];   <span class="hljs-comment">// 保存相关顶点间边的权值</span><br><br>	lowcost[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;          <span class="hljs-comment">// v0作为最小生成树的根开始遍历，权值为0</span><br>	adjvex[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;           <span class="hljs-comment">// v0第一个加入</span><br><br>	<span class="hljs-comment">// 初始化操作</span><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>; i&lt;G.numVertexes; i++) &#123;<br>		lowcost[i] = G.arc[<span class="hljs-number">0</span>][i];   <span class="hljs-comment">// 将邻接矩阵第0行所有权值先加进数组</span><br>		adjvex[i]=<span class="hljs-number">0</span>;                <span class="hljs-comment">// 初始化全部先为v0的下标</span><br>	&#125;<br><br>	<span class="hljs-comment">// 真正构造最小生成树的过程</span><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>; i&lt;G.numVertexes; i++) &#123;<br>		min = INFINITY;    <span class="hljs-comment">// 初始化最小权值为65535等不可能数值</span><br>		j=<span class="hljs-number">1</span>;<br>		k=<span class="hljs-number">0</span>;<br><br>		<span class="hljs-comment">// 遍历全部顶点</span><br>		<span class="hljs-keyword">while</span>(j&lt;G.numVertexes) &#123;<br>			<span class="hljs-comment">// 找出lowcost数组已存储的最小权值</span><br>			<span class="hljs-keyword">if</span>(lowcost[j]!=<span class="hljs-number">0</span>&amp;&amp;lowcost[j]&lt;min) &#123;<br>				min = lowcost[j];<br>				k=j;       <span class="hljs-comment">// 将发现的最小权值下标存入k，以待使用</span><br>			&#125;<br>			j++;<br>		&#125;<br><br>		<span class="hljs-comment">// 打印当前顶点中权值最小的边</span><br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(%d,%d)&quot;</span>,adjvex[k],k);<br>		lowcost[k]=<span class="hljs-number">0</span>;          <span class="hljs-comment">// 将当前顶点的权值设置为0，表示此顶点已经完成任务，进行下一个顶点的遍历</span><br><br>		<span class="hljs-comment">// 邻接矩阵k行逐个遍历全部顶点</span><br>		<span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>; j&lt;G.numVertexes; j++) &#123;<br>			<span class="hljs-keyword">if</span>(lowcost[j]!=<span class="hljs-number">0</span>; &amp;&amp;G.arc[k][j]&lt;lowcost[j]) &#123;<br>				lowcost[j]=G.arc[k][j];<br>				adjvex[j]=k;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码解释：</p>
+<p>对于开头的定义:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> adjvex[MAXVEX];    <span class="hljs-comment">// 保持相关顶点下标</span><br></code></pre></td></tr></table></figure>
+
+<p>对一个顶点做数组，例如 <code>[0,0,1,0,0,0,1,0,1]</code> ，这个数组表示顶点元素为2、6、8的顶点与目标顶点存在联系，也就是他俩是联通的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">lowcost[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;          <span class="hljs-comment">// v0作为最小生成树的根开始遍历，权值为0</span><br>adjvex[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;           <span class="hljs-comment">// v0第一个加入</span><br><br><span class="hljs-comment">// 初始化操作</span><br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>; i&lt;G.numVertexes; i++) &#123;<br>    lowcost[i] = G.arc[<span class="hljs-number">0</span>][i];   <span class="hljs-comment">// 将邻接矩阵第0行所有权值先加进数组</span><br>    adjvex[i]=<span class="hljs-number">0</span>;                <span class="hljs-comment">// 初始化全部先为v0的下标</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个代码则表示默认以第一个结点v0开始，作为根节点使用，并对数组进行初始化操作。</p>
+<p>下面一个大for循环则是真正的生成最小生成树的代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 遍历全部顶点</span><br><span class="hljs-keyword">while</span>(j&lt;G.numVertexes) &#123;<br>    <span class="hljs-comment">// 找出lowcost数组已存储的最小权值</span><br>    <span class="hljs-keyword">if</span>(lowcost[j]!=<span class="hljs-number">0</span>&amp;&amp;lowcost[j]&lt;min) &#123;<br>        min = lowcost[j];<br>        k=j;       <span class="hljs-comment">// 将发现的最小权值下标存入k，以待使用</span><br>    &#125;<br>    j++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>以上代码，由于前面j已经初始化为1，那么就是说j从1到G的所有顶点数遍历，如果碰到 <code>lowcost[j]!=0</code> （目标结点与相关结点之间存在边）且 <code>lowcost[j]&lt;min</code> （目标结点与相关结点之间的边的权值是目前看到的最小值），那么就把min更新为lowcost[j]，且将下标存放进k，后面使用。</p>
+<p>然后使用printf打印，使用语句 <code>lowcost[k]=0;</code> 将顶点权值设置为0，说明这个顶点可以被排除了，进行下一个顶点的遍历。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>; j&lt;G.numVertexes; j++) &#123;<br>    <span class="hljs-keyword">if</span>(lowcost[j]!=<span class="hljs-number">0</span> &amp;&amp; G.arc[k][j]&lt;lowcost[j]) &#123;<br>        lowcost[j]=G.arc[k][j];<br>        adjvex[j]=k;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于这个for循环，相当于把上一个目标顶点的lowcost[]数组和下一个要跳转的顶点的边的权值进行比较，如果上一个顶点的lowcost小于G.arc，则将G.arc替换到lowcost里面去，反之则保留lowcost的数值。</p>
+<p>整体来说，这个算法有一个有意思的地方在于，如果一个顶点与多个已经遍历过的顶点相连，会排除掉权值较大的边，保留在所有与已经遍历过顶点的边中权值最小的边。这正是最后一个for循环实现的操作。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505090905959.png" srcset="/img/loading.gif" lazyload><img src="https://cdn.jsdelivr.net/gh/nice2006/blog-imgs@master/img/202505090906561.png" srcset="/img/loading.gif" lazyload></p>
 
                 
